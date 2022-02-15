@@ -1,0 +1,62 @@
+.note {
+  margin-bottom: 40px;
+  &__title {
+    @include flexMixin(row, normal, center);
+    margin-bottom: 20px;
+    h1 {
+      margin-right: 10px;
+    }
+  }
+  hr {
+    border-color: #f2f2f2;
+    margin-bottom: 30px;
+  }
+  &__btn {
+    padding-left: 4px;
+  }
+}
+
+.noteItem {
+  @include flexMixin(row, normal, center);
+  margin-bottom: 15px;
+  &__done {
+    @include flexMixin(row, center, center);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  &__text {
+    font-size: 16px;
+    line-height: 19px;
+    color: $blackColor;
+  }
+  &__delete {
+    margin-left: auto;
+    .times {
+      cursor: pointer;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.addNoteItemForm {
+  &__inp {
+    margin-bottom: 15px;
+  }
+  &__buttons {
+    @include flexMixin(row, normal, center);
+  }
+  &__add {
+    width: 30%;
+    margin-right: 15px;
+  }
+  &__cancel {
+    font-size: 17px;
+    letter-spacing: 0.15px;
+  }
+}
+
+.editTitleForm {
+  width: 100%;
+}

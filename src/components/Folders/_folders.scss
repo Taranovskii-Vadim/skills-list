@@ -1,0 +1,31 @@
+.folders {
+  @include flexMixin(column, normal, normal);
+  margin-bottom: 50px;
+  &__item {
+    @include flexMixin(row, normal, center);
+    padding: 10px;
+    text-decoration: none;
+    color: $blackColor;
+    font-size: 16px;
+    &:first-child {
+      margin-bottom: 50px;
+      .icon {
+        height: initial;
+      }
+    }
+    .icon {
+      margin-right: 10px;
+    }
+  }
+  &__remove {
+    margin-left: auto;
+    .times {
+      transform: rotate(45deg);
+    }
+  }
+  .active {
+    background: $whiteColor;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+  }
+}

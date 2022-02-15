@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+$greyColor: #e5e5e5;
+$blackColor: black;
+$whiteColor: #ffffff;
+
+@mixin flexMixin($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.application {
+  @include flexMixin(row, normal, normal);
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  border: 1px solid black;
+  width: 750px;
+}
+
+.container {
+  padding: 55px 15px;
+}
+
+.notesContainer {
+  width: 70%;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.inp {
+  background: $whiteColor;
+  border: 1px solid #efefef;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 8px 10px;
+  color: #c7c7c7;
+  &::placeholder {
+    color: #c7c7c7;
+    font-size: 14px;
+  }
+}
+
+.btn {
+  @include flexMixin(row, normal, center);
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  color: #868686;
+  font-size: 18px;
+  .times {
+    margin-right: 10px;
+  }
+}
+
+.greenBtn {
+  color: $whiteColor;
+  justify-content: center;
+  background-color: #4dd599;
+  padding: 9px 0px;
+  border-radius: 4px;
+}
+
+.greyBtn {
+  background-color: #f4f6f8;
+  color: #9c9c9c;
+  border-radius: 4px;
+}
+
+.editBtn {
+  padding: 0;
+}

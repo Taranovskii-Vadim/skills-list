@@ -17,3 +17,4 @@ export type FetchCategoriesAction = ReduxAction<ActionTypes.FETCH_CATEGORIES>;
 export type SetCategoriesAction = PayloadAction<ActionTypes.SET_CATEGORIES, State['data']>;
 
 export type Action = SetCategoriesAction;
+export type AsyncAction = FetchCategoriesAction;

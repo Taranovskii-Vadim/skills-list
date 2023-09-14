@@ -2,11 +2,11 @@ import { all } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-import { categoriesReducer } from './categories';
+import { categories } from './categories';
 
 import { categoriesSaga } from './categories/saga';
 
-const rootReducer = combineReducers({ categories: categoriesReducer });
+const rootReducer = combineReducers({ categories });
 
 function* rootSaga() {
   yield all([categoriesSaga()]);

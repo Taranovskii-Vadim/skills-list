@@ -13,7 +13,7 @@ const initialState: State = {
   isLoading: true,
 };
 
-export const categoriesReducer = (state: State = initialState, action: Action): State => {
+export const categories = (state: State = initialState, action: Action): State => {
   const handler = handlers[action.type] || handlers.DEFAULT;
 
   return handler(state, action);

@@ -18,7 +18,7 @@ function* fetchCategoriesSaga() {
 
     yield put(setCategories(response));
   } catch (e) {
-    // todo handle errorrs
+    // TODO handle errorrs
   }
 }
 

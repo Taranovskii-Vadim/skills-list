@@ -4,12 +4,10 @@ import { setCategories } from './actions';
 import { ActionTypes, State } from './types';
 
 async function mockGetRequest(): Promise<State['data']> {
-  return await Promise.resolve([
-    { id: 0, title: 'frontend' },
-    { id: 1, title: 'backend' },
-    { id: 2, title: 'database' },
-    { id: 3, title: 'common' },
-  ]);
+  const response = await fetch('http://localhost:3000/api/categories');
+  const data = await response.json();
+
+  return data;
 }
 
 function* fetchCategoriesSaga() {

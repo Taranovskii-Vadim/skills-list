@@ -10,8 +10,8 @@ export class CategoriesService {
     return Promise.resolve([
       { id: 0, title: 'frontend' },
       { id: 1, title: 'backend' },
-      { id: 2, title: 'database' },
-      { id: 3, title: 'common' },
+      { id: 2, title: 'базы данных' },
+      { id: 3, title: 'общие' },
     ]);
   }
 }

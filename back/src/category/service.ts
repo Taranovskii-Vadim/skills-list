@@ -1,17 +1,16 @@
+import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 
-import { GetCategoriesDTO } from './dto/get-categories.dto';
+import { Category } from './entity';
 
 @Injectable()
 export class CategoriesService {
-  constructor() {}
+  constructor(
+    @InjectRepository(Category) private readonly table: Repository<Category>,
+  ) {}
 
-  async getAll(): Promise<GetCategoriesDTO[]> {
-    return Promise.resolve([
-      { id: 0, title: 'frontend' },
-      { id: 1, title: 'backend' },
-      { id: 2, title: 'базы данных' },
-      { id: 3, title: 'общие' },
-    ]);
+  async getAll(): Promise<Category[]> {
+    return await this.table.find();
   }
 }

@@ -1,18 +1,16 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 
+// TODO add alias
+import { api } from '../../api';
+import getCategories from '../../api/getCategories';
+
 import { setCategories } from './actions';
 import { ActionTypes, State } from './types';
 
-async function mockGetRequest(): Promise<State['data']> {
-  const response = await fetch('http://localhost:3000/api/categories');
-  const data = await response.json();
-
-  return data;
-}
-
 function* fetchCategoriesSaga() {
   try {
-    const response: State['data'] = yield call(mockGetRequest);
+    // TODO there was a way to import api in index file to avoid import api in each saga file
+    const response: State['data'] = yield call(() => api(getCategories));
 
     yield put(setCategories(response));
   } catch (e) {

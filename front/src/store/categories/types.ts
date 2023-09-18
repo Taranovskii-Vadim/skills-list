@@ -1,10 +1,7 @@
 import { Action as ReduxAction } from 'redux';
 import { CommonState, PayloadAction } from '../types';
 
-type Category = {
-  id: number;
-  title: string;
-};
+export type Category = { id: number; title: string };
 
 export enum ActionTypes {
   FETCH_CATEGORIES = '/categories/FETCH_CATEGORIES',

@@ -6,7 +6,7 @@ const baseURL = 'http://localhost:3000/api';
 
 export const axiosInsatnce = axios.create({ baseURL });
 
-export const api = async <D>(r: Route<D>, p?: Payload, q?: string): Promise<D> => {
+export const api = async <D>(r: Route<D>, p?: Payload, q?: number): Promise<D> => {
   let config: AxiosRequestConfig = { method: r.method, url: r.getUrl(q) };
 
   if (p) {

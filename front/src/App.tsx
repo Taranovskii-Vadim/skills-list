@@ -7,6 +7,7 @@ import { fetchCategories } from './store/categories/actions';
 
 import Tabs from './ui/Tabs';
 import Header from './components/Header';
+import Skills from './components/Skills';
 
 import getTheme from './style';
 
@@ -18,17 +19,17 @@ const App = () => {
     dispatch(fetchCategories());
   }, []);
 
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
-
   return (
     <ThemeProvider theme={getTheme('light')}>
       <CssBaseline />
       <Header />
       <Grid container spacing={3} sx={{ m: 0, width: '100%', pr: 3 }}>
         <Grid item xs={8} sx={{ pt: 0 }}>
-          <Tabs items={data.map(({ title }) => ({ label: title, node: <div>{title}</div> }))} />
+          {!isLoading ? (
+            <Tabs items={data.map(({ id, title }) => ({ label: title, node: <Skills categoryId={id} /> }))} />
+          ) : (
+            <div>loading...</div>
+          )}
         </Grid>
         <Grid item xs={4} sx={{ pt: 0 }}>
           <Paper>block for skills charts 1</Paper>

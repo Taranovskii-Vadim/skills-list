@@ -2,11 +2,14 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
+import { Skill } from './skill/entity';
 import { Category } from './category/entity';
+import { SkillsModule } from './skill/module';
 import { CategoriesModule } from './category/module';
 
 @Module({
   imports: [
+    SkillsModule,
     CategoriesModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
@@ -19,7 +22,7 @@ import { CategoriesModule } from './category/module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [Category],
+        entities: [Category, Skill],
         synchronize: true,
       }),
     }),

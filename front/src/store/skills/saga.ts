@@ -2,9 +2,10 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 import { api } from '../../api';
 import getSkills from '../../api/getSkills';
+import patchSkill from '../../api/patchSkill';
 
 import { setLoading, setSkills } from './actions';
-import { ActionTypes, FetchSkillsAction, State } from './types';
+import { ActionTypes, FetchSkillsAction, PatchSkillAction, State } from './types';
 
 function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
   try {
@@ -18,6 +19,15 @@ function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
   }
 }
 
+function* patchSkillSaga({ payload: { id, ...body } }: PatchSkillAction) {
+  try {
+    const rate: number = yield call(() => api(patchSkill, body, id));
+  } catch (e) {
+    // TODO handle errorrs
+  }
+}
+
 export function* skillsSaga() {
+  yield takeEvery(ActionTypes.PATCH_SKILL, patchSkillSaga);
   yield takeEvery(ActionTypes.FETCH_SKILLS, fetchSkillsSaga);
 }

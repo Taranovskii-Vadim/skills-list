@@ -1,4 +1,11 @@
-import { Get, Controller, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Get,
+  Patch,
+  Controller,
+  Param,
+  ParseIntPipe,
+  Body,
+} from '@nestjs/common';
 
 import { Skill } from './entity';
 import { SkillsService } from './service';
@@ -14,5 +21,13 @@ export class SkillsController {
   @Get(':id')
   async getSkills(@Param('id', ParseIntPipe) id: number): Promise<Skill[]> {
     return this.service.getAll(id);
+  }
+
+  @Patch(':id')
+  async patchRate(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() body: { rate: number },
+  ): Promise<number> {
+    return this.service.update(id, body.rate);
   }
 }

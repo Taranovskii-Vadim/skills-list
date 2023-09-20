@@ -13,4 +13,8 @@ export class SkillsService {
   async getAll(id: number): Promise<Skill[]> {
     return await this.table.find({ where: { category: { id } } });
   }
+
+  async update(id: number, rate: number): Promise<number> {
+    return (await this.table.save({ id, rate })).rate;
+  }
 }

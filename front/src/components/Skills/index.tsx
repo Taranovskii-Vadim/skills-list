@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 import { RootState } from '../../store/types';
-import { fetchSkills } from '../../store/skills/actions';
+import { fetchSkills, patchRate } from '../../store/skills/actions';
 
 type Props = {
   categoryId: number;
@@ -30,15 +30,15 @@ const Skills = ({ categoryId }: Props) => {
 
   return (
     <List sx={{ width: '100%' }}>
-      {data.map((item) => (
-        <ListItem key={item.id}>
+      {data.map(({ id, name, rate }) => (
+        <ListItem key={id}>
           <ListItemAvatar>
             <Avatar>
               <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={item.name} secondary="Jan 9, 2014" />
-          <Rating max={10} value={item.rate} />
+          <ListItemText primary={name} secondary="Jan 9, 2014" />
+          <Rating max={10} value={rate} onChange={(e, value) => dispatch(patchRate({ id, rate: value || 0 }))} />
         </ListItem>
       ))}
     </List>

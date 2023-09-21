@@ -4,7 +4,7 @@ import { api } from '../../api';
 import getSkills from '../../api/getSkills';
 import patchSkill from '../../api/patchSkill';
 
-import { setLoading, setSkills } from './actions';
+import { setLoading, setSkills, updateSkill } from './actions';
 import { ActionTypes, FetchSkillsAction, PatchSkillAction, State } from './types';
 
 function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
@@ -19,9 +19,12 @@ function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
   }
 }
 
-function* patchSkillSaga({ payload: { id, ...body } }: PatchSkillAction) {
+function* patchSkillSaga({ payload }: PatchSkillAction) {
   try {
-    const rate: number = yield call(() => api(patchSkill, body, id));
+    const { id, ...body } = payload;
+
+    yield put(updateSkill(payload));
+    yield call(() => api(patchSkill, body, id));
   } catch (e) {
     // TODO handle errorrs
   }

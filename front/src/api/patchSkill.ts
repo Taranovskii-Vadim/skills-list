@@ -7,9 +7,7 @@ class PatchSkill implements Route {
     return `/skills/${id}`;
   }
 
-  getData(data: number) {
-    return data;
-  }
+  getData() {}
 }
 
 export default new PatchSkill();

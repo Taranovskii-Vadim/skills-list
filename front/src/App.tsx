@@ -8,6 +8,7 @@ import { fetchCategories } from './store/categories/actions';
 import Tabs from './ui/Tabs';
 import Header from './components/Header';
 import Skills from './components/Skills';
+import AddForm from './components/AddForm';
 
 import getTheme from './style';
 
@@ -23,6 +24,7 @@ const App = () => {
     <ThemeProvider theme={getTheme('light')}>
       <CssBaseline />
       <Header />
+      <AddForm />
       <Grid container spacing={3} sx={{ m: 0, width: '100%', pr: 3 }}>
         <Grid item xs={8} sx={{ pt: 0 }}>
           {!isLoading ? (

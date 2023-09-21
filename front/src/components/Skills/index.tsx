@@ -30,14 +30,14 @@ const Skills = ({ categoryId }: Props) => {
 
   return (
     <List sx={{ width: '100%' }}>
-      {data.map(({ id, name, rate }) => (
+      {data.map(({ id, name, rate, createdAt }) => (
         <ListItem key={id}>
           <ListItemAvatar>
             <Avatar>
               <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={name} secondary="Jan 9, 2014" />
+          <ListItemText primary={name} secondary={createdAt} />
           <Rating max={10} value={rate} onChange={(e, value) => dispatch(patchRate({ id, rate: value || 0 }))} />
         </ListItem>
       ))}

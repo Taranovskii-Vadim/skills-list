@@ -1,7 +1,7 @@
 import { Action as ReduxAction } from 'redux';
 import { CommonState, PayloadAction } from '../types';
 
-export type Skill = { id: number; name: string; rate: number };
+export type Skill = { id: number; name: string; rate: number; createdAt: string };
 
 export enum ActionTypes {
   UPDATE_SKILL = '/skills/UPDATE_SKILL',

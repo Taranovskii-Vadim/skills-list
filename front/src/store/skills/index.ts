@@ -7,6 +7,10 @@ const initialState: State = {
 };
 
 export const skills = (state: State = initialState, action: Action): State => {
+  if (action.type === ActionTypes.SET_SKILL) {
+    return { ...state, data: [...state.data, action.payload] };
+  }
+
   if (action.type === ActionTypes.SET_SKILLS) {
     return { ...state, data: action.payload, isLoading: false };
   }

@@ -1,11 +1,28 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import { Modal, Box, Typography, Divider, TextField, Button, Fab } from '@mui/material';
 
-const AddForm = () => {
+import { createSkill } from '../../store/skills/actions';
+
+// TODO add react hook form later
+
+type Props = { id: number };
+
+const AddForm = ({ id }: Props) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const nameRef = useRef<HTMLInputElement>(null);
 
   const handleClose = () => setOpen(false);
+
+  const handleSubmit = (): void => {
+    if (nameRef.current) {
+      dispatch(createSkill({ categoryId: id, name: nameRef.current.value }));
+
+      handleClose();
+    }
+  };
 
   return (
     <>
@@ -27,8 +44,8 @@ const AddForm = () => {
           </Typography>
           <Divider />
           <Box sx={{ p: 3 }}>
-            <TextField fullWidth size="small" placeholder="Наименование" sx={{ mb: 3 }} />
-            <Button variant="contained" sx={{ mr: 3 }}>
+            <TextField inputRef={nameRef} fullWidth size="small" placeholder="Наименование" sx={{ mb: 3 }} />
+            <Button variant="contained" sx={{ mr: 3 }} onClick={handleSubmit}>
               Создать
             </Button>
             <Button variant="outlined" onClick={handleClose}>

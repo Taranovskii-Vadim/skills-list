@@ -1,6 +1,7 @@
 import {
   Get,
   Patch,
+  Post,
   Controller,
   Param,
   ParseIntPipe,
@@ -9,6 +10,7 @@ import {
 
 import { Skill } from './entity';
 import { SkillsService } from './service';
+import { PatchSkillDTO, PostSkillDTO } from './dto';
 
 // TODO better create the third entity called user skills, because we will have buplicates in skills table
 // if user 1 knows react and rates it to 3
@@ -23,10 +25,15 @@ export class SkillsController {
     return this.service.getAll(id);
   }
 
+  @Post()
+  async postSkill(@Body() body: PostSkillDTO): Promise<Skill> {
+    return this.service.create(body);
+  }
+
   @Patch(':id')
   async patchRate(
     @Param('id', ParseIntPipe) id: number,
-    @Body() body: { rate: number },
+    @Body() body: PatchSkillDTO,
   ): Promise<number> {
     return this.service.update(id, body.rate);
   }

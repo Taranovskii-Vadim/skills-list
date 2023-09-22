@@ -1,9 +1,7 @@
-import { format } from 'date-fns';
 import { Skill } from '../store/skills/types';
+import { format } from '../utils';
 
-import { MetaDTO, Method, Route } from './types';
-
-type ResponseDTO = { id: number; name: string; rate: number } & MetaDTO;
+import { CommonSkill, Method, Route } from './types';
 
 class GetSkills implements Route {
   method: Method = 'GET';
@@ -12,12 +10,12 @@ class GetSkills implements Route {
     return `/skills/${id}`;
   }
 
-  getData(data: ResponseDTO[]): Skill[] {
+  getData(data: CommonSkill[]): Skill[] {
     return data.map(({ id, name, rate, createdAt }) => ({
       id,
       name,
       rate,
-      createdAt: format(new Date(createdAt), 'dd.MM.yyyy'),
+      createdAt: format(createdAt),
     }));
   }
 }

@@ -14,3 +14,5 @@ export type MetaDTO = {
   updatedAt: string;
   createdAt: string;
 };
+
+export type CommonSkill = { id: number; name: string; rate: number } & MetaDTO;

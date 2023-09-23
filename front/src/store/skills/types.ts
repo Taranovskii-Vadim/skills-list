@@ -18,7 +18,7 @@ export enum ActionTypes {
 
 export type State = CommonState<Skill[]>;
 export type UpdateRatePayload = Pick<Skill, 'id' | 'rate'>;
-export type CreateSkillPayload = Pick<Skill, 'name'> & { categoryId: number };
+export type CreateSkillPayload = Pick<Skill, 'name'> & { categoryId: number; file: File | undefined };
 
 // async
 

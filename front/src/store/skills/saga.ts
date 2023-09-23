@@ -4,6 +4,7 @@ import { api } from '../../api';
 import getSkills from '../../api/getSkills';
 import postSkill from '../../api/postSkill';
 import patchSkill from '../../api/patchSkill';
+import postSkillLogo from '../../api/postSkillLogo';
 
 import { setLoading, setSkill, setSkills, updateSkill } from './actions';
 import { ActionTypes, FetchSkillsAction, PatchSkillAction, PostSkillAction, Skill, State } from './types';
@@ -31,9 +32,22 @@ function* patchSkillSaga({ payload }: PatchSkillAction) {
   }
 }
 
-function* postSkillSaga({ payload }: PostSkillAction) {
+function* postSkillSaga({ payload: { file, ...other } }: PostSkillAction) {
   try {
-    const response: Skill = yield call(() => api(postSkill, payload));
+    // TODO fix to Skill['logo']
+    let image: string | null = null;
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      image = yield call(() => api(postSkillLogo, formData));
+    }
+
+    console.log(image);
+
+    const response: Skill = yield call(() => api(postSkill, other));
+
     yield put(setSkill(response));
   } catch (e) {
     // TODO handle errorrs

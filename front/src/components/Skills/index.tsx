@@ -29,7 +29,7 @@ const Skills = ({ categoryId }: Props) => {
   }
 
   return (
-    <List sx={{ width: '100%' }}>
+    <List sx={{ width: '100%', maxHeight: '70vh', overflowY: 'auto' }}>
       {data.map(({ id, name, rate, createdAt }) => (
         <ListItem key={id}>
           <ListItemAvatar>

@@ -6,7 +6,13 @@ import {
   Param,
   ParseIntPipe,
   Body,
+  UseInterceptors,
+  UploadedFile,
+  ParseFilePipe,
+  FileTypeValidator,
 } from '@nestjs/common';
+
+import { UploadImageInterceptor } from 'src/utils/interceptors';
 
 import { Skill } from './entity';
 import { SkillsService } from './service';
@@ -28,6 +34,12 @@ export class SkillsController {
   @Post()
   async postSkill(@Body() body: PostSkillDTO): Promise<Skill> {
     return this.service.create(body);
+  }
+
+  @Post('/upload')
+  @UseInterceptors(UploadImageInterceptor)
+  async postSkillLogo(@UploadedFile() file): Promise<string> {
+    return file.filename;
   }
 
   @Patch(':id')

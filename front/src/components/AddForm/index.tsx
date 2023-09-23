@@ -1,24 +1,48 @@
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
-import { Modal, Box, Typography, Divider, TextField, Button, Fab } from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { Modal, Box, Typography, Divider, TextField, Button, Fab, styled } from '@mui/material';
 
 import { createSkill } from '../../store/skills/actions';
 
 // TODO add react hook form later
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
 
 type Props = { id: number };
 
 const AddForm = ({ id }: Props) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [file, setFile] = useState<File>();
   const nameRef = useRef<HTMLInputElement>(null);
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setFile(undefined);
+  };
+
+  const handleSetFile = (e: ChangeEvent<HTMLInputElement>): void => {
+    const value = e.target.files![0];
+    if (!value.type.startsWith('image/')) return;
+
+    setFile(value);
+  };
 
   const handleSubmit = (): void => {
     if (nameRef.current) {
-      dispatch(createSkill({ categoryId: id, name: nameRef.current.value }));
+      dispatch(createSkill({ categoryId: id, name: nameRef.current.value, file }));
 
       handleClose();
     }
@@ -45,8 +69,17 @@ const AddForm = ({ id }: Props) => {
           <Divider />
           <Box sx={{ p: 3 }}>
             <TextField inputRef={nameRef} fullWidth size="small" placeholder="Наименование" sx={{ mb: 3 }} />
+            {file ? (
+              <Box sx={{ maxHeight: '270px', overflowY: 'auto', mb: 3 }}>
+                <img src={URL.createObjectURL(file)} style={{ width: '100%', borderRadius: '4px' }} />
+              </Box>
+            ) : null}
             <Button variant="contained" sx={{ mr: 3 }} onClick={handleSubmit}>
               Создать
+            </Button>
+            <Button component="label" variant="outlined" startIcon={<CloudUploadIcon />} sx={{ mr: 3 }}>
+              Загрузить изображение
+              <VisuallyHiddenInput type="file" onChange={handleSetFile} />
             </Button>
             <Button variant="outlined" onClick={handleClose}>
               Отменить

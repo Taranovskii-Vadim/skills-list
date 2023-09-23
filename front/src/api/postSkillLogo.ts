@@ -1,7 +1,5 @@
 import { Method, Route } from './types';
 
-type ResponseDTO = { filename: string };
-
 class PostFile implements Route {
   method: Method = 'POST';
 
@@ -9,8 +7,8 @@ class PostFile implements Route {
     return '/skills/upload';
   }
 
-  getData({ filename }: ResponseDTO): string {
-    return filename;
+  getData(response: string): string {
+    return response;
   }
 }
 

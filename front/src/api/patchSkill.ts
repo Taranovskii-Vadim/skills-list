@@ -3,7 +3,7 @@ import { Method, Route } from './types';
 class PatchSkill implements Route {
   method: Method = 'PATCH';
 
-  getUrl(id?: number): string {
+  getUrl(id?: string): string {
     return `/skills/${id}`;
   }
 

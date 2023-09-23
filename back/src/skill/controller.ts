@@ -8,9 +8,9 @@ import {
   Body,
   UseInterceptors,
   UploadedFile,
-  ParseFilePipe,
-  FileTypeValidator,
+  Res,
 } from '@nestjs/common';
+import { join } from 'path';
 
 import { UploadImageInterceptor } from 'src/utils/interceptors';
 
@@ -29,6 +29,17 @@ export class SkillsController {
   @Get(':id')
   async getSkills(@Param('id', ParseIntPipe) id: number): Promise<Skill[]> {
     return this.service.getAll(id);
+  }
+
+  @Get('/logo/:name')
+  async getSkillLogo(@Param('name') name: string, @Res() res): Promise<void> {
+    const path = join(process.cwd(), 'src', 'skill', 'logos', name);
+
+    return res.download(path, name, (e) => {
+      if (e) {
+        res.status(500).send({ message: 'Could not download the file' + e });
+      }
+    });
   }
 
   @Post()

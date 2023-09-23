@@ -3,6 +3,8 @@ import { format } from '../utils';
 
 import { CommonSkill, Method, Route } from './types';
 
+type ResponseDTO = CommonSkill & { category: { id: number } };
+
 class PostSkill implements Route {
   method: Method = 'POST';
 
@@ -10,7 +12,7 @@ class PostSkill implements Route {
     return '/skills';
   }
 
-  getData({ category, ...common }: CommonSkill & { category: { id: number } }): Skill {
+  getData({ category, logo, ...common }: ResponseDTO): Omit<Skill, 'logo'> {
     return { ...common, createdAt: format(common.createdAt) };
   }
 }

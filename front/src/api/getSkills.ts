@@ -6,14 +6,15 @@ import { CommonSkill, Method, Route } from './types';
 class GetSkills implements Route {
   method: Method = 'GET';
 
-  getUrl(id?: number): string {
+  getUrl(id?: string): string {
     return `/skills/${id}`;
   }
 
   getData(data: CommonSkill[]): Skill[] {
-    return data.map(({ id, name, rate, createdAt }) => ({
+    return data.map(({ id, logo, name, rate, createdAt }) => ({
       id,
       name,
+      logo,
       rate,
       createdAt: format(createdAt),
     }));

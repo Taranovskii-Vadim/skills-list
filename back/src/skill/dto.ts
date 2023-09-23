@@ -6,6 +6,9 @@ export class PostSkillDTO {
 
   @IsString()
   name: string;
+
+  @IsString()
+  logo: string;
 }
 
 export class PatchSkillDTO {

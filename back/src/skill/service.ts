@@ -15,8 +15,8 @@ export class SkillsService {
     return await this.table.find({ where: { category: { id } } });
   }
 
-  async create({ name, categoryId: id }: PostSkillDTO): Promise<Skill> {
-    const response = await this.table.save({ name, category: { id } });
+  async create({ categoryId: id, ...other }: PostSkillDTO): Promise<Skill> {
+    const response = await this.table.save({ ...other, category: { id } });
 
     return response;
   }

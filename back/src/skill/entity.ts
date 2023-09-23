@@ -13,6 +13,9 @@ export class Skill extends Base {
   @Column({ type: 'real', default: 0 })
   rate: number;
 
+  @Column({ default: '' })
+  logo: string;
+
   @JoinColumn({ name: 'category_id_fkey' })
   @ManyToOne(() => Category)
   category: Category;

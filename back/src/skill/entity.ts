@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 import { Base } from 'src/utils';
+import { User } from 'src/user/entity';
 import { Category } from 'src/category/entity';
 
 // TODO add userId later, after auth
@@ -15,6 +16,10 @@ export class Skill extends Base {
 
   @Column({ default: '' })
   logo: string;
+
+  @JoinColumn({ name: 'user_id_fkey' })
+  @ManyToOne(() => User)
+  user: User;
 
   @JoinColumn({ name: 'category_id_fkey' })
   @ManyToOne(() => Category)

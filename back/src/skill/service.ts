@@ -11,12 +11,20 @@ export class SkillsService {
     @InjectRepository(Skill) private readonly table: Repository<Skill>,
   ) {}
 
-  async getAll(id: number): Promise<Skill[]> {
-    return await this.table.find({ where: { category: { id } } });
+  async getAll(id: number, userId: number): Promise<Skill[]> {
+    return await this.table.find({
+      where: { category: { id }, user: { id: userId } },
+    });
   }
 
-  async create({ categoryId: id, ...other }: PostSkillDTO): Promise<Skill> {
-    const response = await this.table.save({ ...other, category: { id } });
+  async create(dto: PostSkillDTO, id: number): Promise<Skill> {
+    const { categoryId, ...other } = dto;
+
+    const response = await this.table.save({
+      ...other,
+      user: { id },
+      category: { id: categoryId },
+    });
 
     return response;
   }

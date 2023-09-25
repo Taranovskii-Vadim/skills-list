@@ -1,3 +1,4 @@
+import { join } from 'path';
 import {
   Get,
   Patch,
@@ -9,10 +10,13 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  UseGuards,
 } from '@nestjs/common';
-import { join } from 'path';
 
+import { User } from 'src/utils/decorators';
 import { UploadImageInterceptor } from 'src/utils/interceptors';
+
+import { JwtAuthGuard } from 'src/auth/guards/jwt';
 
 import { Skill } from './entity';
 import { SkillsService } from './service';
@@ -23,12 +27,16 @@ import { PatchSkillDTO, PostSkillDTO } from './dto';
 // if user 2 also knows react and rates it to 5
 // it will be two records in skills table
 @Controller('/skills')
+@UseGuards(JwtAuthGuard)
 export class SkillsController {
   constructor(private readonly service: SkillsService) {}
 
   @Get(':id')
-  async getSkills(@Param('id', ParseIntPipe) id: number): Promise<Skill[]> {
-    return this.service.getAll(id);
+  async getSkills(
+    @Param('id', ParseIntPipe) id: number,
+    @User('id') userId: number,
+  ): Promise<Skill[]> {
+    return this.service.getAll(id, userId);
   }
 
   @Get('/logo/:name')
@@ -43,8 +51,11 @@ export class SkillsController {
   }
 
   @Post()
-  async postSkill(@Body() body: PostSkillDTO): Promise<Skill> {
-    return this.service.create(body);
+  async postSkill(
+    @Body() body: PostSkillDTO,
+    @User('id') userId: number,
+  ): Promise<Skill> {
+    return this.service.create(body, userId);
   }
 
   @Post('/upload')

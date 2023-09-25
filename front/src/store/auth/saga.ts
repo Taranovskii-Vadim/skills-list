@@ -1,0 +1,23 @@
+import { takeEvery, call, put } from 'redux-saga/effects';
+
+import { api } from '../../api';
+import postLogin from '../../api/postLogin';
+
+import { setLoading, setToken } from './actions';
+import { ActionTypes, PostLoginAction } from './types';
+
+function* postLoginSaga({ payload }: PostLoginAction) {
+  try {
+    yield put(setLoading());
+
+    const response: string = yield call(() => api(postLogin, payload));
+
+    yield put(setToken(response));
+  } catch (e) {
+    // TODO handle errors
+  }
+}
+
+export function* authSaga() {
+  yield takeEvery(ActionTypes.POST_LOGIN, postLoginSaga);
+}

@@ -24,11 +24,17 @@ function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
 
     const result: State['data'] = yield all(
       response.map(async (item) => {
-        const { data } = await axios.get(`http://localhost:3000/api/skills/logo/${item.logo}`, {
-          responseType: 'blob',
-        });
+        let logo = '';
 
-        return { ...item, logo: URL.createObjectURL(data) };
+        if (item.logo) {
+          const { data } = await axios.get(`http://localhost:3000/api/skills/logo/${item.logo}`, {
+            responseType: 'blob',
+          });
+
+          logo = URL.createObjectURL(data);
+        }
+
+        return { ...item, logo };
       }),
     );
 

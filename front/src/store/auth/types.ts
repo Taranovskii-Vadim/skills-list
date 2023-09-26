@@ -7,6 +7,7 @@ export enum ActionTypes {
 
   // sync
   SET_TOKEN = '/auth/SET_TOKEN',
+  RESET_TOKEN = '/auth/RESET_TOKEN',
   SET_LOADING = '/auth/SET_LOADING',
 }
 
@@ -23,6 +24,7 @@ export type AsyncAction = PostLoginAction;
 // sync
 
 export type SetLoadingAction = ReduxAction<ActionTypes.SET_LOADING>;
+export type ResetTokenAction = ReduxAction<ActionTypes.RESET_TOKEN>;
 export type SetTokenAction = PayloadAction<ActionTypes.SET_TOKEN, string>;
 
-export type Action = SetTokenAction | SetLoadingAction;
+export type Action = SetTokenAction | SetLoadingAction | ResetTokenAction;

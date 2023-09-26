@@ -7,6 +7,10 @@ const initialState: State = {
 };
 
 export const auth = (state: State = initialState, action: Action): State => {
+  if (action.type === ActionTypes.RESET_TOKEN) {
+    return { ...state, data: '' };
+  }
+
   if (action.type === ActionTypes.SET_LOADING) {
     return { ...state, isLoading: true };
   }

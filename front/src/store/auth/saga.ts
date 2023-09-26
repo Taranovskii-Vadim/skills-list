@@ -13,9 +13,7 @@ function* postLoginSaga({ payload }: PostLoginAction) {
     const response: string = yield call(() => api(postLogin, payload));
 
     yield put(setToken(response));
-  } catch (e) {
-    // TODO handle errors
-  }
+  } catch (e) {}
 }
 
 export function* authSaga() {

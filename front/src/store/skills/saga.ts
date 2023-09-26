@@ -25,9 +25,7 @@ function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
     );
 
     yield put(setSkills(result));
-  } catch (e) {
-    // TODO handle errorrs
-  }
+  } catch (e) {}
 }
 
 function* patchSkillSaga({ payload }: PatchSkillAction) {
@@ -36,9 +34,7 @@ function* patchSkillSaga({ payload }: PatchSkillAction) {
 
     yield put(updateSkill(payload));
     yield call(() => api(patchSkill, body, id.toString()));
-  } catch (e) {
-    // TODO handle errorrs
-  }
+  } catch (e) {}
 }
 
 function* postSkillSaga({ payload: { file, ...other } }: PostSkillAction) {
@@ -55,9 +51,7 @@ function* postSkillSaga({ payload: { file, ...other } }: PostSkillAction) {
     const response: Omit<Skill, 'logo'> = yield call(() => api(postSkill, { logo, ...other }));
 
     yield put(setSkill({ ...response, logo: file ? URL.createObjectURL(file) : '' }));
-  } catch (e) {
-    // TODO handle errorrs
-  }
+  } catch (e) {}
 }
 
 export function* skillsSaga() {

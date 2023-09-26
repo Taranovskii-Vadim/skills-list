@@ -12,9 +12,7 @@ function* fetchCategoriesSaga() {
     const response: State['data'] = yield call(() => api(getCategories));
 
     yield put(setCategories(response));
-  } catch (e) {
-    // TODO handle errorrs
-  }
+  } catch (e) {}
 }
 
 export function* categoriesSaga() {

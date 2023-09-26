@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { takeEvery, call, put, all } from 'redux-saga/effects';
 
 import { api } from '../../api';
@@ -17,22 +16,9 @@ function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
 
     const response: State['data'] = yield call(() => api(getSkills, undefined, payload.toString()));
 
-    // TODO try refactor api config
-    // const result: State['data'] = yield all(
-    //   response.map((item) => ({ ...item, logo: call(() => api(getSkillLogo, undefined, item.logo)) })),
-    // );
-
     const result: State['data'] = yield all(
-      response.map(async (item) => {
-        let logo = '';
-
-        if (item.logo) {
-          const { data } = await axios.get(`http://localhost:3000/api/skills/logo/${item.logo}`, {
-            responseType: 'blob',
-          });
-
-          logo = URL.createObjectURL(data);
-        }
+      response.map(function* (item) {
+        const logo: string = item.logo ? yield call(() => api(getSkillLogo, undefined, item.logo, 'blob')) : '';
 
         return { ...item, logo };
       }),

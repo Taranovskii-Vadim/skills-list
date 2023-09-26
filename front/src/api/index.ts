@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, ResponseType } from 'axios';
 
 import { Payload, Route } from './types';
 
@@ -11,8 +11,8 @@ export const axiosInsatnce = axios.create({
   },
 });
 
-export const api = async <D>(r: Route<D>, p?: Payload, q?: string): Promise<D> => {
-  let config: AxiosRequestConfig = { method: r.method, url: r.getUrl(q) };
+export const api = async <D>(r: Route<D>, p?: Payload, q?: string, rt?: ResponseType): Promise<D> => {
+  let config: AxiosRequestConfig = { method: r.method, url: r.getUrl(q), responseType: rt };
 
   if (p) {
     config = { ...config, data: p };

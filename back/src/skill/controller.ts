@@ -22,10 +22,6 @@ import { Skill } from './entity';
 import { SkillsService } from './service';
 import { PatchSkillDTO, PostSkillDTO } from './dto';
 
-// TODO better create the third entity called user skills, because we will have buplicates in skills table
-// if user 1 knows react and rates it to 3
-// if user 2 also knows react and rates it to 5
-// it will be two records in skills table
 @Controller('/skills')
 @UseGuards(JwtAuthGuard)
 export class SkillsController {

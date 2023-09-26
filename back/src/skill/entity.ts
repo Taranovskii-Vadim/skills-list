@@ -4,8 +4,6 @@ import { Base } from 'src/utils';
 import { User } from 'src/user/entity';
 import { Category } from 'src/category/entity';
 
-// TODO add userId later, after auth
-
 @Entity()
 export class Skill extends Base {
   @Column()

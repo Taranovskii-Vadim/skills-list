@@ -14,6 +14,7 @@ const getTheme = (mode: PaletteMode) => {
           },
         },
       },
+      MuiFormHelperText: { styleOverrides: { root: { margin: 0, position: 'absolute', left: 0, top: 40 } } },
       MuiRating: { defaultProps: { precision: 0.5 } },
       MuiAppBar: { styleOverrides: { root: { padding: 0 } } },
       MuiPaper: { styleOverrides: { root: { padding: '16px 24px' } } },

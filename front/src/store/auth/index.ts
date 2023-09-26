@@ -6,6 +6,9 @@ const initialState: State = {
   isLoading: false,
 };
 
+// TODO add fetch profile option
+// TODO add user logout
+
 export const auth = (state: State = initialState, action: Action): State => {
   if (action.type === ActionTypes.RESET_TOKEN) {
     return { ...state, data: '' };

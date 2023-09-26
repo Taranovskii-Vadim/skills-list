@@ -1,16 +1,11 @@
-import { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { axiosInsatnce } from 'src/api';
 import { RootState } from 'src/store/types';
 import { resetToken } from 'src/store/auth/actions';
 
-type Props = {
-  children: ReactNode;
-};
-
-const RequireAuth = ({ children }: Props) => {
+const PrivateRoute = () => {
   const location = useLocation();
   // TODO add generic type
   const dispatch = useDispatch();
@@ -35,11 +30,7 @@ const RequireAuth = ({ children }: Props) => {
     },
   );
 
-  if (!data) {
-    return LoginForm;
-  }
-
-  return children;
+  return data ? <Outlet /> : LoginForm;
 };
 
-export default RequireAuth;
+export default PrivateRoute;

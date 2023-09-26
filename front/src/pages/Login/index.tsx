@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, useLocation } from 'react-router-dom';
 
-import { RootState } from '../../store/types';
-import { login } from '../../store/auth/actions';
+import { RootState } from 'src/store/types';
+import { login } from 'src/store/auth/actions';
 
 // TODO create beautiful form
 const Login = () => {

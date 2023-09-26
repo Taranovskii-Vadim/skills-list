@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { RootState } from '../../store/types';
+import { RootState } from 'src/store/types';
 
 type Props = {
   children: ReactNode;

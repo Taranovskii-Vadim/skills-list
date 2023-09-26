@@ -1,5 +1,5 @@
-import { Skill } from '../store/skills/types';
-import { format } from '../utils';
+import { Skill } from 'src/store/skills/types';
+import { format } from 'src/utils';
 
 import { CommonSkill, Method, Route } from './types';
 

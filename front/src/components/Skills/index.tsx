@@ -8,12 +8,10 @@ import ImageIcon from '@mui/icons-material/Image';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 
-import { RootState } from '../../store/types';
-import { fetchSkills, patchRate } from '../../store/skills/actions';
+import { RootState } from 'src/store/types';
+import { fetchSkills, patchRate } from 'src/store/skills/actions';
 
-type Props = {
-  categoryId: number;
-};
+type Props = { categoryId: number };
 
 const Skills = ({ categoryId }: Props) => {
   const { isLoading, data } = useSelector((state: RootState) => state.skills);

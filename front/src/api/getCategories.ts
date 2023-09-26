@@ -1,4 +1,4 @@
-import { Category } from '../store/categories/types';
+import { Category } from 'src/store/categories/types';
 
 import { MetaDTO, Method, Route } from './types';
 

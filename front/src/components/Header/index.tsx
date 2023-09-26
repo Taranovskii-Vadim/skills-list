@@ -1,12 +1,12 @@
 import { useState, MouseEvent } from 'react';
-import AppBar from '@mui/material/AppBar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
+import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Box } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 
 const settings = ['Logout'];
 

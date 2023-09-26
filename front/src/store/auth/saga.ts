@@ -1,7 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 
-import { api } from '../../api';
-import postLogin from '../../api/postLogin';
+import { api } from 'src/api';
+import postLogin from 'src/api/postLogin';
 
 import { setLoading, setToken } from './actions';
 import { ActionTypes, PostLoginAction } from './types';

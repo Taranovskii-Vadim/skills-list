@@ -2,7 +2,7 @@ import { useState, SyntheticEvent } from 'react';
 import { Box, Tabs as MuiTabs, Tab } from '@mui/material';
 
 import AddForm from '../AddForm';
-import TabPanel from '../../ui/TabPanel';
+import TabPanel from 'src/ui/TabPanel';
 
 interface Props {
   items: { label: string; node: JSX.Element }[];

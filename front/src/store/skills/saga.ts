@@ -1,11 +1,11 @@
 import { takeEvery, call, put, all } from 'redux-saga/effects';
 
-import { api } from '../../api';
-import getSkills from '../../api/getSkills';
-import postSkill from '../../api/postSkill';
-import patchSkill from '../../api/patchSkill';
-import getSkillLogo from '../../api/getSkillLogo';
-import postSkillLogo from '../../api/postSkillLogo';
+import { api } from 'src/api';
+import getSkills from 'src/api/getSkills';
+import postSkill from 'src/api/postSkill';
+import patchSkill from 'src/api/patchSkill';
+import getSkillLogo from 'src/api/getSkillLogo';
+import postSkillLogo from 'src/api/postSkillLogo';
 
 import { setLoading, setSkill, setSkills, updateSkill } from './actions';
 import { ActionTypes, FetchSkillsAction, PatchSkillAction, PostSkillAction, Skill, State } from './types';

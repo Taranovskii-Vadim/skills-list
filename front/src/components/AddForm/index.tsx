@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Modal, Box, Typography, Divider, TextField, Button, Fab, styled } from '@mui/material';
 
-import { createSkill } from '../../store/skills/actions';
+import { createSkill } from 'src/store/skills/actions';
 
 // TODO add react hook form later
 

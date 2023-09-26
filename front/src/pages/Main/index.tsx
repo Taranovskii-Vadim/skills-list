@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { Grid, Paper } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Dispatch, RootState } from '../../store/types';
-import { fetchCategories } from '../../store/categories/actions';
+import { Dispatch, RootState } from 'src/store/types';
+import { fetchCategories } from 'src/store/categories/actions';
 
-import Tabs from '../../components/Tabs';
-import Header from '../../components/Header';
-import Skills from '../../components/Skills';
+import Tabs from 'src/components/Tabs';
+import Header from 'src/components/Header';
+import Skills from 'src/components/Skills';
 
 const Main = () => {
   const dispatch = useDispatch<Dispatch>();

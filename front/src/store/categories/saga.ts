@@ -1,8 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 
-// TODO add alias
-import { api } from '../../api';
-import getCategories from '../../api/getCategories';
+import { api } from 'src/api';
+import getCategories from 'src/api/getCategories';
 
 import { setCategories } from './actions';
 import { ActionTypes, State } from './types';

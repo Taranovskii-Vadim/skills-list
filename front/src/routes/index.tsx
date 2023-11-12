@@ -1,6 +1,9 @@
 import { lazy } from 'react';
+import CategoryIcon from '@mui/icons-material/Category';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ConstructionIcon from '@mui/icons-material/Construction';
 
-import { RootPageKey, Route } from './types';
+import { Link, RootPageKey, Route } from './types';
 
 const Skills = lazy(() => import('../pages/Skills'));
 const Dashboard = lazy(() => import('../pages/Dashboard'));
@@ -13,6 +16,12 @@ const ROOT_PATHS: Record<RootPageKey, string> = {
   skills: `${ROOT}skills`,
   categories: `${ROOT}categories`,
 };
+
+export const getLinks = (): Link[] => [
+  { id: 'dashboard', text: 'Дашбоард', to: ROOT, icon: <DashboardIcon /> },
+  { id: 'skills', text: 'Навыки', to: ROOT_PATHS.skills, icon: <ConstructionIcon /> },
+  { id: 'categories', text: 'Категории', to: ROOT_PATHS.categories, icon: <CategoryIcon /> },
+];
 
 export const getRoutes = (): Route[] => {
   return [

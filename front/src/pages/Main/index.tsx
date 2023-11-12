@@ -6,7 +6,6 @@ import { Dispatch, RootState } from 'src/store/types';
 import { fetchCategories } from 'src/store/categories/actions';
 
 import Tabs from 'src/components/Tabs';
-import Header from 'src/components/Header';
 import Skills from 'src/components/Skills';
 
 const Main = () => {
@@ -18,18 +17,15 @@ const Main = () => {
   }, []);
 
   return (
-    <>
-      <Header />
-      <Grid container spacing={3} sx={{ m: 0, width: '100%', pr: 3 }}>
-        <Grid item xs={12} sx={{ pt: 0 }}>
-          {!isLoading ? (
-            <Tabs items={data.map(({ id, title }) => ({ label: title, node: <Skills categoryId={id} /> }))} />
-          ) : (
-            <div>loading...</div>
-          )}
-        </Grid>
+    <Grid container spacing={3} sx={{ m: 0, width: '100%', pr: 3 }}>
+      <Grid item xs={12} sx={{ pt: 0 }}>
+        {!isLoading ? (
+          <Tabs items={data.map(({ id, title }) => ({ label: title, node: <Skills categoryId={id} /> }))} />
+        ) : (
+          <div>loading...</div>
+        )}
       </Grid>
-    </>
+    </Grid>
   );
 };
 

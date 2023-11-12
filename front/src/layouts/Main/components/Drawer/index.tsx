@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import { getLinks } from 'src/routes';
+import { Toolbar } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import MuiDrawer from '@mui/material/Drawer';
 import ListItem from '@mui/material/ListItem';
@@ -12,6 +12,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
+import { getLinks } from 'src/routes';
 
 const drawerWidth = 240;
 
@@ -37,13 +39,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
-
-const DrawerFooter = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  ...theme.mixins.toolbar,
-}));
 
 const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
   flexShrink: 0,
@@ -84,9 +79,9 @@ const Drawer = ({ children }: Props) => {
             </ListItem>
           ))}
         </List>
-        <DrawerFooter>
+        <Toolbar sx={{ display: 'flex', justifyContent: open ? 'flex-end' : 'center', alignItems: 'center' }}>
           <IconButton onClick={handleDrawerToggle}>{!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}</IconButton>
-        </DrawerFooter>
+        </Toolbar>
       </StyledDrawer>
       <Box component="main" sx={{ flexGrow: 1, px: 3, py: '80px' }}>
         {children}

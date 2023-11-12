@@ -1,14 +1,17 @@
 import { useState, MouseEvent } from 'react';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
-import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
+import MuiAppBar from '@mui/material/AppBar';
 import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
 const settings = ['Logout'];
+
+const AppBar = styled(MuiAppBar)(({ theme }) => ({ zIndex: theme.zIndex.drawer + 1 }));
 
 const Header = () => {
   const [anchorElUser, setAnchorElUser] = useState<HTMLElement | null>(null);
@@ -22,8 +25,8 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', minHeight: '58px', px: 3 }}>
+    <AppBar position="fixed" sx={{ maxHeight: '56px' }}>
+      <Box sx={{ marginLeft: 'auto', py: 1, px: 3 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

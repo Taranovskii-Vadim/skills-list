@@ -70,7 +70,7 @@ const Drawer = ({ children }: Props) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <StyledDrawer variant="permanent" open={open}>
-        <List>
+        <List sx={{ pt: '80px' }}>
           {['Inbox'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -98,8 +98,7 @@ const Drawer = ({ children }: Props) => {
           <IconButton onClick={handleDrawerToggle}>{!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}</IconButton>
         </DrawerFooter>
       </StyledDrawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerFooter />
+      <Box component="main" sx={{ flexGrow: 1, px: 3, py: '80px' }}>
         {children}
       </Box>
     </Box>

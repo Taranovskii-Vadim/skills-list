@@ -12,6 +12,9 @@ import { skillsSaga } from './skills/saga';
 import { profileSaga } from './profile/saga';
 import { categoriesSaga } from './categories/saga';
 
+// TODO think about rewrite store to zustand
+// mark old store folder wit sagas as legacy, keep it in this repo maybe
+
 const rootReducer = combineReducers({ auth, categories, skills, profile });
 
 function* rootSaga() {

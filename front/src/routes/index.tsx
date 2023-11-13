@@ -17,6 +17,9 @@ const ROOT_PATHS: Record<RootPageKey, string> = {
   categories: `${ROOT}categories`,
 };
 
+// TODO leave categories page for ordinary users, show only table with categories
+// deprecate option to create new categories and create categrory route for them
+
 export const getLinks = (role: UserRole): Link[] => {
   const base: Link[] = [
     { id: 'dashboard', text: 'Дашбоард', to: ROOT, icon: <DashboardIcon /> },

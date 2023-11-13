@@ -1,14 +1,16 @@
 import { ComponentProps } from 'react';
 
+import { Profile } from 'src/store/profile/types';
+
 import Header from './components/Header';
 import Drawer from './components/Drawer';
 
-type Props = ComponentProps<typeof Drawer>;
+type Props = Omit<ComponentProps<typeof Drawer>, 'role'> & { profile: Profile };
 
-const MainLayout = ({ children }: Props) => (
+const MainLayout = ({ children, profile }: Props) => (
   <>
-    <Header />
-    <Drawer>{children}</Drawer>
+    <Header login={profile.login} />
+    <Drawer role={profile.role}>{children}</Drawer>
   </>
 );
 

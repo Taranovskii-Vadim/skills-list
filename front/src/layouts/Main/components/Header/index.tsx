@@ -13,7 +13,9 @@ const settings = ['Logout'];
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({ zIndex: theme.zIndex.drawer + 1 }));
 
-const Header = () => {
+type Props = { login: string };
+
+const Header = ({ login }: Props) => {
   const [anchorElUser, setAnchorElUser] = useState<HTMLElement | null>(null);
 
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
@@ -29,7 +31,7 @@ const Header = () => {
       <Box sx={{ marginLeft: 'auto', py: 1, px: 3 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Avatar alt={login} src="/static/images/avatar/2.jpg" />
           </IconButton>
         </Tooltip>
         <Menu

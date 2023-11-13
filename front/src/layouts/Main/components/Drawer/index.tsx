@@ -55,9 +55,9 @@ const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
   }),
 }));
 
-type Props = { children: ReactNode };
+type Props = { children: ReactNode; role: UserRole };
 
-const Drawer = ({ children }: Props) => {
+const Drawer = ({ children, role }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleDrawerToggle = () => setOpen((prev) => !prev);
@@ -66,7 +66,7 @@ const Drawer = ({ children }: Props) => {
     <Box sx={{ display: 'flex' }}>
       <StyledDrawer variant="permanent" open={open}>
         <List sx={{ pt: '80px' }}>
-          {getLinks().map((item) => (
+          {getLinks(role).map((item) => (
             <ListItem key={item.id} disablePadding sx={{ display: 'block' }}>
               <NavLink to={item.to} style={{ textDecoration: 'none', color: 'initial' }}>
                 <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>

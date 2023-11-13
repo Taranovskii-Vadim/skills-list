@@ -6,12 +6,14 @@ import { User } from './user/entity';
 import { Skill } from './skill/entity';
 import { Category } from './category/entity';
 
+import { UsersModule } from './user/module';
 import { SkillsModule } from './skill/module';
 import { JwtAuthModule } from './auth/module';
 import { CategoriesModule } from './category/module';
 
 @Module({
   imports: [
+    UsersModule,
     SkillsModule,
     JwtAuthModule,
     CategoriesModule,

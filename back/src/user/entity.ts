@@ -14,6 +14,9 @@ export class User extends Base {
   @Column()
   lastname: string;
 
+  @Column()
+  role: 'admin' | 'user';
+
   @Exclude()
   @Column()
   password: string;

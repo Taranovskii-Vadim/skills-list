@@ -17,16 +17,28 @@ const ROOT_PATHS: Record<RootPageKey, string> = {
   categories: `${ROOT}categories`,
 };
 
-export const getLinks = (): Link[] => [
-  { id: 'dashboard', text: 'Дашбоард', to: ROOT, icon: <DashboardIcon /> },
-  { id: 'skills', text: 'Навыки', to: ROOT_PATHS.skills, icon: <ConstructionIcon /> },
-  { id: 'categories', text: 'Категории', to: ROOT_PATHS.categories, icon: <CategoryIcon /> },
-];
+export const getLinks = (role: UserRole): Link[] => {
+  const base: Link[] = [
+    { id: 'dashboard', text: 'Дашбоард', to: ROOT, icon: <DashboardIcon /> },
+    { id: 'skills', text: 'Навыки', to: ROOT_PATHS.skills, icon: <ConstructionIcon /> },
+  ];
 
-export const getRoutes = (): Route[] => {
-  return [
+  if (role === 'admin') {
+    return [...base, { id: 'categories', text: 'Категории', to: ROOT_PATHS.categories, icon: <CategoryIcon /> }];
+  }
+
+  return base;
+};
+
+export const getRoutes = (role: UserRole): Route[] => {
+  const base: Route[] = [
     { id: 'skills', path: ROOT_PATHS.skills, element: <Skills /> },
     { id: 'dashboard', path: ROOT_PATHS.dashboard, element: <Dashboard /> },
-    { id: 'categories', path: ROOT_PATHS.categories, element: <Categories /> },
   ];
+
+  if (role === 'admin') {
+    return [...base, { id: 'categories', path: ROOT_PATHS.categories, element: <Categories /> }];
+  }
+
+  return base;
 };

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import Pages from './pages';
+// import Pages from './pages';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -13,7 +13,7 @@ const App = () => (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoute />}>
-        <Route path="*" element={<Pages />} />
+        <Route path="*" element={<div>logged in</div>} />
       </Route>
     </Routes>
   </ThemeProvider>

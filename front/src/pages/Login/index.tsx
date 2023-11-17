@@ -1,28 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 import { TextField, Button, Box } from '@mui/material';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 
-import { RootState } from 'src/store/types';
-import { login } from 'src/store/auth/actions';
-import { LoginPayload } from 'src/store/auth/types';
+import useAuth from 'src/store/auth';
+import { FormValues } from 'src/store/auth/types';
 
 const ERROR_TEXT = 'Обязательное поле';
 
 const Login = () => {
   const location = useLocation();
-  // TODO add generic to dispatch
-  const dispatch = useDispatch();
-  const { data } = useSelector((state: RootState) => state.auth);
-  const { control, formState, handleSubmit } = useForm<LoginPayload>({ defaultValues: { password: '', login: '' } });
+  const { data, login } = useAuth();
+  const { control, formState, handleSubmit } = useForm<FormValues>({ defaultValues: { password: '', login: '' } });
 
   if (data) {
     return <Navigate replace to="/" state={{ from: location }} />;
   }
 
-  const onSubmit: SubmitHandler<LoginPayload> = (result): void => {
-    dispatch(login(result));
-  };
+  const onSubmit: SubmitHandler<FormValues> = (result) => login(result);
 
   const { errors } = formState;
 

@@ -1,30 +1,5 @@
-import { Action as ReduxAction } from 'redux';
-import { CommonState, PayloadAction } from '../types';
+import { CommonState } from '../types';
 
-export enum ActionTypes {
-  // async
-  POST_LOGIN = '/auth/POST_LOGIN',
+export type FormValues = { login: string; password: string };
 
-  // sync
-  SET_TOKEN = '/auth/SET_TOKEN',
-  RESET_TOKEN = '/auth/RESET_TOKEN',
-  SET_LOADING = '/auth/SET_LOADING',
-}
-
-export type LoginPayload = { login: string; password: string };
-
-export type State = CommonState<string>;
-
-// async
-
-export type PostLoginAction = PayloadAction<ActionTypes.POST_LOGIN, LoginPayload>;
-
-export type AsyncAction = PostLoginAction;
-
-// sync
-
-export type SetLoadingAction = ReduxAction<ActionTypes.SET_LOADING>;
-export type ResetTokenAction = ReduxAction<ActionTypes.RESET_TOKEN>;
-export type SetTokenAction = PayloadAction<ActionTypes.SET_TOKEN, string>;
-
-export type Action = SetTokenAction | SetLoadingAction | ResetTokenAction;
+export type State = CommonState<string> & { login: (payload: FormValues) => Promise<void>; logout: () => void };

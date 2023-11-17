@@ -15,8 +15,6 @@ class PostLogin implements Route {
   getData({ access_token }: ResponseDTO): string {
     axiosInsatnce.defaults.headers.common = { Authorization: `bearer ${access_token}` };
 
-    localStorage.setItem('token', access_token);
-
     return access_token;
   }
 }

@@ -1,25 +1,34 @@
-import { Action, ActionTypes, State } from './types';
+import { create } from 'zustand';
 
-const initialState: State = {
-  data: localStorage.getItem('token') || '',
+import { api } from 'src/api';
+import postLogin from 'src/api/postLogin';
+
+import { State } from './types';
+
+const useAuth = create<State>((set) => ({
   error: '',
-  isLoading: false,
-};
+  loading: false,
+  data: localStorage.getItem('token') || '',
 
-// TODO add user logout
+  login: async (payload) => {
+    try {
+      set({ loading: true });
+      const token = await api(postLogin, payload);
 
-export const auth = (state: State = initialState, action: Action): State => {
-  if (action.type === ActionTypes.RESET_TOKEN) {
-    return { ...state, data: '' };
-  }
+      localStorage.setItem('token', token);
 
-  if (action.type === ActionTypes.SET_LOADING) {
-    return { ...state, isLoading: true };
-  }
+      set({ data: token });
+    } catch (e) {
+      // TODO handle actual error from api
+      set({ error: 'Unexpected error while auth process' });
+    } finally {
+      set({ loading: false });
+    }
+  },
+  logout: () => {
+    localStorage.removeItem('token');
+    set({ data: '' });
+  },
+}));
 
-  if (action.type === ActionTypes.SET_TOKEN) {
-    return { ...state, data: action.payload, isLoading: false };
-  }
-
-  return state;
-};
+export default useAuth;

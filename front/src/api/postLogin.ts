@@ -1,4 +1,5 @@
 import { axiosInsatnce } from '.';
+
 import { Route, Method } from './types';
 
 type ResponseDTO = {

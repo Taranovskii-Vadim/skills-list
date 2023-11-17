@@ -1,24 +1,25 @@
 import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { getRoutes } from 'src/routes';
-import { RootState } from 'src/store/types';
-import { fetchProfile } from 'src/store/profile/actions';
+
+import useProfile from 'src/store/profile';
 
 import MainLayout from 'src/layouts/Main';
 
 const Pages = () => {
-  const dispatch = useDispatch();
-
-  const { data, isLoading } = useSelector((state: RootState) => state.profile);
+  const { data, error, loading, fetchData } = useProfile();
 
   useEffect(() => {
-    dispatch(fetchProfile());
+    fetchData();
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return <div>loading...</div>;
+  }
+
+  if (!data) {
+    return <div>{error}...</div>;
   }
 
   return (

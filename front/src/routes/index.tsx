@@ -23,7 +23,7 @@ const ROOT_PATHS: Record<RootPageKey, string> = {
 export const getLinks = (role: UserRole): Link[] => {
   const base: Link[] = [
     { id: 'dashboard', text: 'Дашбоард', to: ROOT, icon: <DashboardIcon /> },
-    { id: 'skills', text: 'Навыки', to: ROOT_PATHS.skills, icon: <ConstructionIcon /> },
+    { id: 'skills', text: 'Мои навыки', to: ROOT_PATHS.skills, icon: <ConstructionIcon /> },
   ];
 
   if (role === 'admin') {

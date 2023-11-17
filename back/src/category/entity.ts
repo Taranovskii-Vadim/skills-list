@@ -6,4 +6,7 @@ import { Base } from 'src/utils';
 export class Category extends Base {
   @Column()
   title: string;
+
+  @Column({ nullable: true })
+  description?: string;
 }

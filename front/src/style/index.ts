@@ -1,8 +1,10 @@
+import grey from '@mui/material/colors/grey';
 import { PaletteMode, createTheme } from '@mui/material';
 
 const getTheme = (mode: PaletteMode) => {
   return createTheme({
-    palette: { mode },
+    palette: { mode, background: { default: grey[100] } },
+
     // components: {
     //   MuiListItem: {
     //     styleOverrides: {

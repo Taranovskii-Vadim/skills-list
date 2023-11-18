@@ -3,7 +3,7 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 
 import Pages from './pages';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 
 import getTheme from './style';
 

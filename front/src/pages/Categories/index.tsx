@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
-import { Box, Button, Typography, TableRow, TableCell } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { TableRow, TableCell } from '@mui/material';
+
+import { getPathTo } from 'src/routes';
+import useCategories from 'src/store/categories';
 
 import Table from 'src/ui/Table';
-import useCategories from 'src/store/categories';
+import PageHeader from 'src/components/PageHeader';
 
 import { COLUMNS } from './constants';
 
 const Categories = () => {
+  const navigate = useNavigate();
   const { data, loading, error, fetchData } = useCategories();
 
   useEffect(() => {
@@ -25,12 +30,12 @@ const Categories = () => {
     return <div>nothing to show...</div>;
   }
 
+  // TODO can move only admin role
+  const handleNavigateToNewForm = () => navigate(getPathTo('newCategory'));
+
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-        <Typography variant="h4">Категории</Typography>
-        <Button variant="contained">Добавить</Button>
-      </Box>
+      <PageHeader title="Категории" onClick={handleNavigateToNewForm} />
       <Table columns={COLUMNS}>
         {data.map((row) => (
           <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>

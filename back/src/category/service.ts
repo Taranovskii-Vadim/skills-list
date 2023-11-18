@@ -11,6 +11,6 @@ export class CategoriesService {
   ) {}
 
   async getAll(): Promise<Category[]> {
-    return await this.table.find();
+    return await this.table.find({ relations: { user: true } });
   }
 }

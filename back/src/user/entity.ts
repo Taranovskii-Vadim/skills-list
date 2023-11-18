@@ -1,5 +1,4 @@
 import { Column, Entity } from 'typeorm';
-import { Exclude } from 'class-transformer';
 
 import { Base } from 'src/utils';
 
@@ -17,7 +16,6 @@ export class User extends Base {
   @Column()
   role: 'admin' | 'user';
 
-  @Exclude()
-  @Column()
+  @Column({ select: false })
   password: string;
 }

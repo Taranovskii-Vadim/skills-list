@@ -1,14 +1,6 @@
 import { Profile } from 'src/store/profile/types';
 
-import { Method, Route } from './types';
-
-type ResponseDTO = {
-  id: number;
-  name: string;
-  login: string;
-  lastname: string;
-  role: 'admin' | 'user';
-};
+import { CommonUserDTO, Method, Route } from './types';
 
 class GetProfile implements Route {
   method: Method = 'GET';
@@ -17,7 +9,7 @@ class GetProfile implements Route {
     return '/user/profile';
   }
 
-  getData({ login, role }: ResponseDTO): Profile {
+  getData({ login, role }: CommonUserDTO): Profile {
     return { login, role };
   }
 }

@@ -1,6 +1,13 @@
 import { CommonState } from '../types';
 
-export type Category = { id: number; name: string; numberOfSkills: number; description: string };
+export type Category = {
+  id: number;
+  name: string;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
+  numberOfSkills: number;
+};
 
 export type Actions = { fetchData: () => Promise<void> };
 

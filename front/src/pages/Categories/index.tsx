@@ -36,9 +36,9 @@ const Categories = () => {
           <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
             <TableCell>{row.name}</TableCell>
             <TableCell>{row.numberOfSkills}</TableCell>
-            <TableCell>
-              <Typography>{row.description}</Typography>
-            </TableCell>
+            <TableCell>{row.author}</TableCell>
+            <TableCell>{row.createdAt}</TableCell>
+            <TableCell>{row.updatedAt}</TableCell>
           </TableRow>
         ))}
       </Table>

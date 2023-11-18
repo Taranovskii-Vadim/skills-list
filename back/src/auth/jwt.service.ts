@@ -15,7 +15,8 @@ export class JwtAuthService {
   ) {}
 
   async validateUser(login: string, password: string): Promise<ReqUser | null> {
-    const user = await this.usersService.findBy('login', login);
+    const user = await this.usersService.findByLogin(login);
+
     if (user && user.password === password) {
       const { password, createdAt, updatedAt, ...result } = user;
 

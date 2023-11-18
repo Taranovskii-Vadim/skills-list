@@ -1,8 +1,11 @@
+import { format, getUserFullname } from 'src/utils';
 import { Category } from 'src/store/categories/types';
 
-import { MetaDTO, Method, Route } from './types';
+import { CommonUserDTO, MetaDTO, Method, Route } from './types';
 
-type ResponseDTO = { id: number; title: string; description: string | null } & MetaDTO;
+type CategoryDTO = { id: number; title: string; description: string | null; user: CommonUserDTO };
+
+type ResponseDTO = CategoryDTO & MetaDTO;
 
 class GetCategories implements Route {
   method: Method = 'GET';
@@ -12,13 +15,14 @@ class GetCategories implements Route {
   }
 
   getData(data: ResponseDTO[]): Category[] {
-    return data.map(({ id, title, description }) => ({
+    return data.map(({ id, title, user, createdAt, updatedAt }) => ({
       id,
-      // TODO expand backend
       name: title,
+      // TODO need to expand backend for this feature
       numberOfSkills: 15,
-      // TODO bug with mui table and ability to show info in one string
-      description: description || '',
+      createdAt: format(createdAt),
+      updatedAt: format(updatedAt),
+      author: getUserFullname(user.name, user.lastname),
     }));
   }
 }

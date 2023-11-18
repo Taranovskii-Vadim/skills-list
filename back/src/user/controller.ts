@@ -9,6 +9,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt';
 export class UserController {
   @Get('profile')
   getProfile(@User() data: ReqUser): ReqUser {
+    // TODO also return createdAt and updatedAt fields
     return data;
   }
 }

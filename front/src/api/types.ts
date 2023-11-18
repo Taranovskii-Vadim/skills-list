@@ -16,3 +16,11 @@ export type MetaDTO = {
 };
 
 export type CommonSkill = { id: number; logo: string; name: string; rate: number } & MetaDTO;
+
+export type CommonUserDTO = {
+  id: number;
+  name: string;
+  login: string;
+  lastname: string;
+  role: 'admin' | 'user';
+} & MetaDTO;

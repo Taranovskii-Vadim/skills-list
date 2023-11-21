@@ -13,7 +13,7 @@ export class SkillsService {
 
   async getAll(id: number, userId: number): Promise<Skill[]> {
     return await this.table.find({
-      where: { category: { id }, user: { id: userId } },
+      // where: { category: { id }, user: { id: userId } },
     });
   }
 

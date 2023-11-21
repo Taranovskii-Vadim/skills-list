@@ -16,6 +16,7 @@ export class CategoriesService {
   }
 
   async create(payload: PostCategoryDTO): Promise<Category> {
-    return await this.table.save(payload);
+    // TODO pass real user id
+    return await this.table.save({ user: { id: 1 }, ...payload });
   }
 }

@@ -13,5 +13,5 @@ export class Category extends Base {
   user: User;
 
   @Column({ nullable: true })
-  description?: string;
+  description: string;
 }

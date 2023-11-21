@@ -3,16 +3,18 @@ import { create } from 'zustand';
 import { api } from 'src/api';
 import postCategory from 'src/api/postCategory';
 
-import { State } from './types';
+import { PostPayloadDTO, State } from './types';
 
 const useCategory = create<State>((set) => ({
   data: undefined,
   loading: false,
   error: '',
 
-  createCategory: async (payload, redirect) => {
+  createCategory: async ({ name, description }, redirect) => {
     try {
       set({ loading: true });
+
+      const payload: PostPayloadDTO = { title: name, description };
 
       await api(postCategory, payload);
 

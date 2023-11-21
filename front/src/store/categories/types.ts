@@ -1,8 +1,7 @@
-import { CommonState } from '../types';
+import { CommonCategory, CommonState } from '../types';
 
-export type Category = {
+export type Category = CommonCategory & {
   id: number;
-  name: string;
   author: string;
   createdAt: string;
   updatedAt: string;

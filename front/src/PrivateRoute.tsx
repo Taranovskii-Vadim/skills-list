@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 import { axiosInsatnce } from 'src/api';
@@ -12,16 +13,16 @@ const PrivateRoute = () => {
 
   axiosInsatnce.interceptors.response.use(
     (response) => response,
-    (error) => {
+    (error: AxiosError) => {
       const { response } = error;
 
-      if (response.data.statusCode === 401) {
+      if (response?.status === 401) {
         logout();
 
         return LoginForm;
       }
 
-      return Promise.reject(error);
+      return Promise.reject(error.message);
     },
   );
 

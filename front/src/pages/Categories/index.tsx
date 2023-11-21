@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { TableRow, TableCell } from '@mui/material';
 
 import { getPathTo } from 'src/routes';
+import useProfile from 'src/store/profile';
 import useCategories from 'src/store/categories';
 
 import Table from 'src/ui/Table';
@@ -12,6 +13,7 @@ import { COLUMNS } from './constants';
 
 const Categories = () => {
   const navigate = useNavigate();
+  const { data: profile } = useProfile();
   const { data, loading, error, fetchData } = useCategories();
 
   useEffect(() => {
@@ -30,8 +32,7 @@ const Categories = () => {
     return <div>nothing to show...</div>;
   }
 
-  // TODO can move only admin role
-  const handleNavigateToNewForm = () => navigate(getPathTo('newCategory'));
+  const handleNavigateToNewForm = profile?.role === 'admin' ? () => navigate(getPathTo('newCategory')) : undefined;
 
   return (
     <>

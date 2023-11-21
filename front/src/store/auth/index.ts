@@ -27,6 +27,7 @@ const useAuth = create<State>((set) => ({
   },
   logout: () => {
     localStorage.removeItem('token');
+
     set({ data: '' });
   },
 }));

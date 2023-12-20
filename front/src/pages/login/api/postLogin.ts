@@ -1,0 +1,21 @@
+import { Route, Method, axiosInsatnce } from '@shared/api';
+
+type ResponseDTO = {
+  access_token: string;
+};
+
+class PostLogin implements Route {
+  method: Method = 'POST';
+
+  getUrl(): string {
+    return '/auth/signIn';
+  }
+
+  getData({ access_token }: ResponseDTO): string {
+    axiosInsatnce.defaults.headers.common = { Authorization: `bearer ${access_token}` };
+
+    return access_token;
+  }
+}
+
+export default new PostLogin();

@@ -1,9 +1,9 @@
-import { ComponentProps } from 'react';
+import { ComponentProps } from "react";
 
-import { Profile } from 'src/store/profile/types';
+import { Profile } from "src/store/profile/types";
 
-import Header from './components/Header';
-import Drawer from './components/Drawer';
+import Header from "./components/Header";
+import Drawer from "./components/Drawer";
 
 type Props = ComponentProps<typeof Drawer> & { profile: Profile };
 

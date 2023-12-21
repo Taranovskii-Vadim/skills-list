@@ -26,7 +26,7 @@ const PrivateRoute = () => {
     },
   );
 
-  return data ? <Outlet /> : LoginForm;
+  return data ? <Outlet context={{ logout }} /> : LoginForm;
 };
 
 export default PrivateRoute;

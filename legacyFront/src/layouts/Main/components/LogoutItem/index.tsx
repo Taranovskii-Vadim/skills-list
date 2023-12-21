@@ -1,8 +1,8 @@
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
-import { Navigate, useLocation } from 'react-router-dom';
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import { Navigate, useLocation } from "react-router-dom";
 
-import useAuth from 'src/store/auth';
+import useAuth from "src/store/auth";
 
 const LogoutItem = () => {
   const location = useLocation();

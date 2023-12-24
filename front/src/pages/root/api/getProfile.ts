@@ -8,10 +8,7 @@ type ResponseDTO = {
   login: string;
   lastname: string;
   role: 'admin' | 'user';
-
-  updatedAt: string;
-  createdAt: string;
-};
+} & MetaDataDTO;
 
 class GetProfile implements Route {
   method: Method = 'GET';

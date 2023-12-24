@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography } from "@mui/material";
 
 type Props = {
   title: string;
@@ -6,7 +6,14 @@ type Props = {
 };
 
 const PageHeader = ({ title, onClick }: Props) => (
-  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      mb: 3,
+    }}
+  >
     <Typography variant="h4">{title}</Typography>
     {onClick ? (
       <Button variant="contained" onClick={onClick}>

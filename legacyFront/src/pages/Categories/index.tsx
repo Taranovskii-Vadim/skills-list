@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TableRow, TableCell } from '@mui/material';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { TableRow, TableCell } from "@mui/material";
 
-import { getPathTo } from 'src/routes';
-import useProfile from 'src/store/profile';
-import useCategories from 'src/store/categories';
+import { getPathTo } from "src/routes";
+import useProfile from "src/store/profile";
+import useCategories from "src/store/categories";
 
-import Table from 'src/ui/Table';
-import PageHeader from 'src/components/PageHeader';
+import Table from "src/ui/Table";
+import PageHeader from "src/components/PageHeader";
 
-import { COLUMNS } from './constants';
+import { COLUMNS } from "./constants";
 
 const Categories = () => {
   const navigate = useNavigate();
@@ -32,14 +32,20 @@ const Categories = () => {
     return <div>nothing to show...</div>;
   }
 
-  const handleNavigateToNewForm = profile?.role === 'admin' ? () => navigate(getPathTo('newCategory')) : undefined;
+  const handleNavigateToNewForm =
+    profile?.role === "admin"
+      ? () => navigate(getPathTo("newCategory"))
+      : undefined;
 
   return (
     <>
       <PageHeader title="Категории" onClick={handleNavigateToNewForm} />
       <Table columns={COLUMNS}>
         {data.map((row) => (
-          <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+          <TableRow
+            key={row.id}
+            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          >
             <TableCell>{row.name}</TableCell>
             <TableCell>{row.numberOfSkills}</TableCell>
             <TableCell>{row.author}</TableCell>

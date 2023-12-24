@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { TableRow, TableCell } from '@mui/material';
 
 import Table from '@shared/ui/mui/Table';
-
-import useCategories from '../model/store';
+import { useCategories } from '@entities/category';
 
 const COLUMNS = ['Наименование', 'Количество навыков', 'Автор', 'Дата создания', 'Последнее изменение'];
 

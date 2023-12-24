@@ -2,7 +2,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-type Props = { title: string; onClick: Maybe<() => void> };
+type Props = { title: string; onClick?: () => void };
 
 const PageHeader = ({ title, onClick }: Props) => (
   <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>

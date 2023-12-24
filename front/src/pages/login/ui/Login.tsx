@@ -1,11 +1,11 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { TextField, Button, Box } from '@mui/material';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { Button, Box } from '@mui/material';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+import { Input } from '@shared/ui/form';
 
 import useAuth from '../model/store';
 import { FormValues } from '../model/types';
-
-const ERROR_TEXT = 'Обязательное поле';
 
 // TODO maybe move code to widgets or smth
 
@@ -36,29 +36,8 @@ const Login = () => {
         transform: 'translate(-50%,-50%)',
       }}
     >
-      <Controller
-        control={control}
-        name="login"
-        rules={{ required: ERROR_TEXT }}
-        render={({ field }) => (
-          <TextField error={!!errors.login} helperText={errors.login?.message} size="small" sx={{ mb: 3 }} {...field} />
-        )}
-      />
-      <Controller
-        control={control}
-        name="password"
-        rules={{ required: ERROR_TEXT }}
-        render={({ field }) => (
-          <TextField
-            size="small"
-            type="password"
-            sx={{ mb: 3 }}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-            {...field}
-          />
-        )}
-      />
+      <Input name="login" control={control} error={errors.login?.message} />
+      <Input name="password" type="password" control={control} error={errors.password?.message} />
       <Button type="submit" variant="contained">
         Войти
       </Button>

@@ -7,7 +7,7 @@ import { Input } from '@shared/ui/form';
 import useAuth from '../model/store';
 import { FormValues } from '../model/types';
 
-// TODO maybe move code to widgets or smth
+// TODO login form could be in shared ????
 
 const Login = () => {
   const location = useLocation();

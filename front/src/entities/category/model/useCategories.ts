@@ -3,9 +3,9 @@ import { create } from 'zustand';
 import { api } from '@shared/api';
 import getCategories from '../api/getCategories';
 
-import { State } from './types';
+import { CategoriesState } from './types';
 
-const useCategories = create<State>((set) => ({
+const useCategories = create<CategoriesState>((set) => ({
   data: [],
   error: '',
   loading: true,

@@ -1,7 +1,7 @@
 import { format } from '@shared/lib/date';
 import { Method, Route } from '@shared/api';
 
-import { Category } from '../model/types';
+import { BaseCategory } from '../model/types';
 
 type CategoryDTO = {
   id: number;
@@ -25,7 +25,7 @@ class GetCategories implements Route {
     return '/categories';
   }
 
-  getData(data: ResponseDTO[]): Category[] {
+  getData(data: ResponseDTO[]): BaseCategory[] {
     return data.map(({ id, title, user: { name, lastname }, createdAt, updatedAt }) => {
       const author = `${name[0].toUpperCase()}${name.slice(1)} ${lastname[0].toUpperCase()}${lastname.slice(1)}`;
 

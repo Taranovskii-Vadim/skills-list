@@ -1,4 +1,7 @@
-export type Category = {
+type CommonState = { loading: boolean; error: string };
+
+// table of categories
+export type BaseCategory = {
   id: number;
   name: string;
   author: string;
@@ -7,8 +10,19 @@ export type Category = {
   numberOfSkills: number;
 };
 
-type Fields = { data: Category[]; error: string; loading: boolean };
+export type CategoriesState = CommonState & {
+  data: BaseCategory[];
+  fetchData: () => Promise<void>;
+};
 
-type Actions = { fetchData: () => Promise<void> };
+// view category
 
-export type State = Prettify<Fields & Actions>;
+export type Category = BaseCategory & { description: string };
+
+// create category
+
+export type FormValues = Pick<Category, 'name' | 'description'>;
+
+export type CategoryCreationState = CommonState & {
+  createCategory: (payload: FormValues, redirect: () => void) => Promise<void>;
+};

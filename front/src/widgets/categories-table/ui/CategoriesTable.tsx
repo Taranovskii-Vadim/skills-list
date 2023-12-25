@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
-import { TableRow, TableCell } from '@mui/material';
+import { TableCell } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
-import Table from '@shared/ui/mui/Table';
+import { Table, TableRow } from '@shared/ui/mui';
+
 import { useCategories } from '@entities/category';
 
 const COLUMNS = ['Наименование', 'Количество навыков', 'Автор', 'Дата создания', 'Последнее изменение'];
 
 const CategoriesTable = () => {
+  const navigate = useNavigate();
   const { data, loading, error, fetchData } = useCategories();
 
   useEffect(() => {
@@ -28,7 +31,7 @@ const CategoriesTable = () => {
   return (
     <Table columns={COLUMNS}>
       {data.map((row) => (
-        <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+        <TableRow key={row.id} onClick={() => navigate(`/categories/${row.id}`)}>
           <TableCell>{row.name}</TableCell>
           <TableCell>{row.numberOfSkills}</TableCell>
           <TableCell>{row.author}</TableCell>

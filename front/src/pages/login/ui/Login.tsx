@@ -36,8 +36,15 @@ const Login = () => {
         transform: 'translate(-50%,-50%)',
       }}
     >
-      <Input name="login" control={control} error={errors.login?.message} />
-      <Input name="password" type="password" control={control} error={errors.password?.message} />
+      <Input name="login" label="Логин" required control={control} error={errors.login?.message} />
+      <Input
+        required
+        name="password"
+        label="Пароль"
+        type="password"
+        control={control}
+        error={errors.password?.message}
+      />
       <Button type="submit" variant="contained">
         Войти
       </Button>

@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 
 import { PageHeader } from '@widgets/page-header';
@@ -11,7 +12,11 @@ const CategoriesPage = () => {
 
   return (
     <>
-      <PageHeader title="Категории" onClick={handleNavigateToNewForm} />
+      <PageHeader title="Категории">
+        <Button variant="contained" onClick={handleNavigateToNewForm}>
+          Добавить
+        </Button>
+      </PageHeader>
       <CategoriesTable />
     </>
   );

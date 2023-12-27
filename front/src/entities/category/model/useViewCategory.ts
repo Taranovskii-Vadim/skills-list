@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { api } from '@shared/api';
 
 import getCategory from '../api/getCategory';
+import deleteCategory from '../api/deleteCategory';
 
 import { CategoryViewState } from './types';
 
@@ -20,6 +21,22 @@ const useViewCategory = create<CategoryViewState>((set) => ({
       set({ data });
     } catch (e) {
       set({ error: 'Error while trying to get category' });
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  deleteCategory: async (id: string, redirect: () => void) => {
+    try {
+      set({ loading: true });
+
+      await api(deleteCategory, undefined, id);
+
+      set({ data: undefined });
+      // TODO we redirect to table and show old categories with deleted, second later we get fresh list with one category removed
+      redirect();
+    } catch (e) {
+      set({ error: 'Error while trying to delete category' });
     } finally {
       set({ loading: false });
     }

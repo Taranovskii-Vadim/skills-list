@@ -1,4 +1,4 @@
-export type Method = 'GET' | 'POST' | 'PATCH';
+export type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
 export type Payload = Record<string, string | number> | FormData;
 

@@ -6,6 +6,7 @@ import {
   UseGuards,
   Param,
   ParseIntPipe,
+  Delete,
 } from '@nestjs/common';
 
 import { JwtAuthGuard } from 'src/auth/guards/jwt';
@@ -27,6 +28,11 @@ export class CategoriesController {
   @Get(':id')
   async getCategory(@Param('id', ParseIntPipe) id: number): Promise<Category> {
     return this.service.getBy(id);
+  }
+
+  @Delete(':id')
+  async delCategory(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return this.service.deleteBy(id);
   }
 
   @Post()

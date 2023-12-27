@@ -22,6 +22,10 @@ export class CategoriesService {
     });
   }
 
+  async deleteBy(id: number): Promise<void> {
+    await this.table.delete(id);
+  }
+
   async create(payload: PostCategoryDTO): Promise<Category> {
     // TODO pass real user id
     return await this.table.save({ user: { id: 1 }, ...payload });

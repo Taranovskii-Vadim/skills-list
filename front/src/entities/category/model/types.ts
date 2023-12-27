@@ -19,7 +19,11 @@ export type CategoriesState = CommonState & {
 
 export type Category = Omit<BaseCategory, 'id'> & { description: string };
 
-export type CategoryViewState = CommonState & { data: Maybe<Category>; fetchData: (id: string) => Promise<void> };
+export type CategoryViewState = CommonState & {
+  data: Maybe<Category>;
+  fetchData: (id: string) => Promise<void>;
+  deleteCategory: (id: string, redirect: () => void) => Promise<void>;
+};
 
 // create category
 

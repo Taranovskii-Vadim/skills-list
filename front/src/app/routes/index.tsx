@@ -22,6 +22,7 @@ const router = createBrowserRouter([
           { path: '/categories', element: <CategoriesPage /> },
           { path: '/categories/new', element: <NewCategory /> },
           { path: '/categories/:id', element: <ViewCategory /> },
+          { path: '/categories/edit/:id', element: <div>edit category</div> },
 
           { path: '*', element: <div>not found page...</div> },
         ],

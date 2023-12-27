@@ -1,19 +1,14 @@
 import { format } from '@shared/lib/date';
 import { Method, Route } from '@shared/api';
+import { getFullname } from '@shared/lib/common';
 
 import { BaseCategory } from '../model/types';
 
 type CategoryDTO = {
   id: number;
   title: string;
+  user: UserDTO;
   description: string | null;
-  user: {
-    id: number;
-    name: string;
-    login: string;
-    lastname: string;
-    role: 'admin' | 'user';
-  } & MetaDataDTO;
 };
 
 type ResponseDTO = CategoryDTO & MetaDataDTO;
@@ -26,19 +21,15 @@ class GetCategories implements Route {
   }
 
   getData(data: ResponseDTO[]): BaseCategory[] {
-    return data.map(({ id, title, user: { name, lastname }, createdAt, updatedAt }) => {
-      const author = `${name[0].toUpperCase()}${name.slice(1)} ${lastname[0].toUpperCase()}${lastname.slice(1)}`;
-
-      return {
-        id,
-        author,
-        name: title,
-        // TODO need to expand backend for this feature
-        numberOfSkills: 15,
-        createdAt: format(createdAt),
-        updatedAt: format(updatedAt),
-      };
-    });
+    return data.map(({ id, title, user: { name, lastname }, createdAt, updatedAt }) => ({
+      id,
+      name: title,
+      // TODO need to expand backend for this feature
+      numberOfSkills: 15,
+      createdAt: format(createdAt),
+      updatedAt: format(updatedAt),
+      author: getFullname(name, lastname),
+    }));
   }
 }
 

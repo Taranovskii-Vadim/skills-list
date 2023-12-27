@@ -2,13 +2,7 @@ import { Method, Route } from '@shared/api';
 
 import { Profile } from '../model/types';
 
-type ResponseDTO = {
-  id: number;
-  name: string;
-  login: string;
-  lastname: string;
-  role: 'admin' | 'user';
-} & MetaDataDTO;
+type ResponseDTO = UserDTO;
 
 class GetProfile implements Route {
   method: Method = 'GET';

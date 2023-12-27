@@ -1,4 +1,12 @@
-import { Get, Body, Post, Controller, UseGuards } from '@nestjs/common';
+import {
+  Get,
+  Body,
+  Post,
+  Controller,
+  UseGuards,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 
 import { JwtAuthGuard } from 'src/auth/guards/jwt';
 
@@ -14,6 +22,11 @@ export class CategoriesController {
   @Get()
   async getCategories(): Promise<Category[]> {
     return this.service.getAll();
+  }
+
+  @Get(':id')
+  async getCategory(@Param('id', ParseIntPipe) id: number): Promise<Category> {
+    return this.service.getBy(id);
   }
 
   @Post()

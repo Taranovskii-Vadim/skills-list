@@ -2,7 +2,6 @@ type CommonState = { loading: boolean; error: string };
 
 // table of categories
 export type BaseCategory = {
-  id: number;
   name: string;
   author: string;
   createdAt: string;
@@ -11,13 +10,15 @@ export type BaseCategory = {
 };
 
 export type CategoriesState = CommonState & {
-  data: BaseCategory[];
+  data: Array<{ id: number } & BaseCategory>;
   fetchData: () => Promise<void>;
 };
 
 // view category
 
 export type Category = BaseCategory & { description: string };
+
+export type CategoryViewState = CommonState & { data: Maybe<Category>; fetchData: (id: string) => Promise<void> };
 
 // create category
 

@@ -5,7 +5,9 @@ import { Backdrop } from '@shared/ui/mui';
 
 import { Category, useViewCategory } from '@entities/category';
 
-const LABELS: Record<keyof Category, string> = {
+type Key = keyof Category;
+
+const LABELS: Record<Key, string> = {
   author: 'Автор',
   name: 'Наименование',
   description: 'Описание',
@@ -30,8 +32,8 @@ const CategoryInformation = ({ id }: Props) => {
         <>
           {Object.keys(data).map((key) => (
             <Stack key={key} direction="row" alignItems="center" sx={{ mb: 3, '&:last-child': { mb: 0 } }}>
-              <Typography sx={{ width: '280px' }}>{LABELS[key as keyof Category]}:</Typography>
-              <Typography>{data[key as keyof Category]}</Typography>
+              <Typography sx={{ width: '280px' }}>{LABELS[key as Key]}:</Typography>
+              <Typography>{data[key as Key]}</Typography>
             </Stack>
           ))}
         </>

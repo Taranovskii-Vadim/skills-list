@@ -30,11 +30,12 @@ const useViewCategory = create<CategoryViewState>((set) => ({
     try {
       set({ loading: true });
 
+      // TODO fix query params in api
       await api(deleteCategory, undefined, id);
 
-      set({ data: undefined });
-      // TODO we redirect to table and show old categories with deleted, second later we get fresh list with one category removed
       redirect();
+
+      set({ data: undefined });
     } catch (e) {
       set({ error: 'Error while trying to delete category' });
     } finally {

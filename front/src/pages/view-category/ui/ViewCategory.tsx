@@ -13,15 +13,17 @@ const ViewCategory = () => {
 
   if (!id) throw new Error('Can not find page id');
 
-  const handleNavigateToEditForm = () => (role === 'admin' ? navigate(`/categories/edit/${id}`) : undefined);
-
   return (
     <>
       <PageHeader title="Просмотр категории">
-        <Button variant="contained" onClick={handleNavigateToEditForm} sx={{ mr: 3 }}>
-          Редактировать
-        </Button>
-        <DeleteCategoryModal id={id} />
+        {role === 'admin' ? (
+          <>
+            <Button variant="contained" onClick={() => navigate(`/categories/edit/${id}`)} sx={{ mr: 3 }}>
+              Редактировать
+            </Button>
+            <DeleteCategoryModal id={id} />
+          </>
+        ) : null}
       </PageHeader>
       <CategoryInformation id={id} />
     </>

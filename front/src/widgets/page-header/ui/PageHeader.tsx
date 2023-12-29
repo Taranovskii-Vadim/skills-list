@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-type Props = { title: string; children?: ReactNode };
+type Props = { title: string; children?: ReactNode | null };
 
 const PageHeader = ({ title, children }: Props) => (
   <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>

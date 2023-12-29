@@ -16,6 +16,7 @@ const CategoriesTable = () => {
     fetchData();
   }, []);
 
+  // TODO change to backdrop later
   if (loading) {
     return <div>loading...</div>;
   }

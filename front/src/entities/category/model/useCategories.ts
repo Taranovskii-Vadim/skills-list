@@ -12,6 +12,7 @@ const useCategories = create<CategoriesState>((set) => ({
 
   fetchData: async () => {
     try {
+      set({ loading: true });
       const data = await api(getCategories);
 
       set({ data });

@@ -15,20 +15,14 @@ export type CategoriesState = CommonState & {
   fetchData: () => Promise<void>;
 };
 
-// view category
+export type FormValues = Pick<Category, 'name' | 'description'>;
 
 export type Category = Omit<BaseCategory, 'id'> & { description: string };
 
-export type CategoryViewState = CommonState & {
+export type CategoryState = CommonState & {
   data: Maybe<Category>;
   fetchData: (id: string) => Promise<void>;
   deleteCategory: (id: string, redirect: () => void) => Promise<void>;
-};
-
-// create category
-
-export type FormValues = Pick<Category, 'name' | 'description'>;
-
-export type CategoryCreationState = CommonState & {
   createCategory: (payload: FormValues, redirect: () => void) => Promise<void>;
+  editCategory: (id: string, payload: FormValues, redirect: () => void) => Promise<void>;
 };

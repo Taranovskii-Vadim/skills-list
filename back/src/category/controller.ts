@@ -7,13 +7,14 @@ import {
   Param,
   ParseIntPipe,
   Delete,
+  Patch,
 } from '@nestjs/common';
 
 import { JwtAuthGuard } from 'src/auth/guards/jwt';
 
 import { Category } from './entity';
-import { PostCategoryDTO } from './dto';
 import { CategoriesService } from './service';
+import { PostCategoryDTO, PatchCategoryDTO } from './dto';
 
 @Controller('/categories')
 @UseGuards(JwtAuthGuard)
@@ -33,6 +34,14 @@ export class CategoriesController {
   @Delete(':id')
   async delCategory(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.service.deleteBy(id);
+  }
+
+  @Patch(':id')
+  async updateCategory(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() body: PatchCategoryDTO,
+  ): Promise<Category> {
+    return this.service.update(id, body);
   }
 
   @Post()

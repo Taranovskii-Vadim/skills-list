@@ -1,1 +1,1 @@
-export { default as CategoryCreationForm } from './ui/CategoryCreationForm';
+export { default as CategorySubmitForm } from './ui/CategorySubmitForm';

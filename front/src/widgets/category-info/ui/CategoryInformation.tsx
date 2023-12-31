@@ -3,7 +3,7 @@ import { Paper, Stack, Typography } from '@mui/material';
 
 import { Backdrop } from '@shared/ui/mui';
 
-import { Category, useViewCategory } from '@entities/category';
+import { Category, useCategory } from '@entities/category';
 
 type Key = keyof Category;
 
@@ -19,7 +19,7 @@ const LABELS: Record<Key, string> = {
 type Props = { id: string };
 
 const CategoryInformation = ({ id }: Props) => {
-  const { data, loading, fetchData } = useViewCategory();
+  const { data, loading, fetchData } = useCategory();
 
   useEffect(() => {
     fetchData(id);

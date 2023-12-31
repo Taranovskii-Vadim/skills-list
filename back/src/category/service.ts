@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Category } from './entity';
-import { PostCategoryDTO } from './dto';
+import { PatchCategoryDTO, PostCategoryDTO } from './dto';
 
 @Injectable()
 export class CategoriesService {
@@ -22,12 +22,20 @@ export class CategoriesService {
     });
   }
 
+  async update(id: number, payload: PatchCategoryDTO): Promise<Category> {
+    // TODO pass real user id
+    await this.table.update(id, { user: { id: 1 }, ...payload });
+
+    return this.getBy(id);
+  }
+
   async deleteBy(id: number): Promise<void> {
     await this.table.delete(id);
   }
 
   async create(payload: PostCategoryDTO): Promise<Category> {
     // TODO pass real user id
+    // TODO expand relations for front
     return await this.table.save({ user: { id: 1 }, ...payload });
   }
 }

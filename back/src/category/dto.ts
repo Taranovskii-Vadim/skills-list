@@ -7,3 +7,11 @@ export class PostCategoryDTO {
   @IsString()
   description: string;
 }
+
+export class PatchCategoryDTO {
+  @IsString()
+  title: string;
+
+  @IsString()
+  description: string;
+}

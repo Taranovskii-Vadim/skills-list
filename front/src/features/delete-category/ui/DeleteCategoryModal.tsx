@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Modal } from '@shared/ui/mui';
 
-import { useViewCategory } from '@entities/category';
+import { useCategory } from '@entities/category';
 
 type Props = { id: string };
 
@@ -13,7 +13,7 @@ const DeleteCategoryModal = ({ id }: Props) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const { deleteCategory } = useViewCategory();
+  const { deleteCategory } = useCategory();
 
   const handleClose = () => setOpen(false);
 

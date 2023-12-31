@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 
-import { CategorySubmitForm } from '@features/create-category';
+import { CategorySubmitForm } from '@features/submit-category';
 
 import { PageHeader } from '@widgets/page-header';
 

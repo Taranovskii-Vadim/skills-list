@@ -5,7 +5,7 @@ import { useCategory } from '@entities/category';
 
 import { PageHeader } from '@widgets/page-header';
 
-import { CategorySubmitForm } from '@features/create-category';
+import { CategorySubmitForm } from '@features/submit-category';
 
 const EditCategory = () => {
   const { fetchData } = useCategory();

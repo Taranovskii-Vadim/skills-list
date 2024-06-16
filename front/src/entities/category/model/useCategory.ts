@@ -7,8 +7,7 @@ import postCategory from '../api/postCategory';
 import patchCategory from '../api/patchCategory';
 import deleteCategory from '../api/deleteCategory';
 
-import { PatchPayloadDTO, PostPayloadDTO } from './dto';
-import { CategoryState, FormValues } from './types';
+import { CategoryState, FormValues, PatchPayloadDTO, PostPayloadDTO } from './types';
 
 const useCategory = create<CategoryState>((set) => ({
   error: '',

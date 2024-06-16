@@ -19,7 +19,7 @@ export class Skill extends Base {
   @ManyToOne(() => User)
   user: User;
 
-  // @JoinColumn({ name: 'category_id_fkey' })
-  // @ManyToOne(() => Category)
-  // category: Category;
+  @JoinColumn({ name: 'category_id_fkey' })
+  @ManyToOne(() => Category)
+  category: Category;
 }

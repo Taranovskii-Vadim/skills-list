@@ -3,13 +3,13 @@ import { TableCell } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { Table, TableRow } from '@shared/ui/mui';
-import { useCategories } from '@entities/category';
+import { useSkills } from '@entities/skill';
 
-const COLUMNS = ['Наименование', 'Количество навыков', 'Автор', 'Дата создания', 'Последнее изменение'];
+const COLUMNS = ['Наименование', 'Категория', 'Рейтинг', 'Дата создания', 'Дата обновления'];
 
-const CategoriesTable = () => {
+const SkillsTable = () => {
   const navigate = useNavigate();
-  const { data, loading, error, fetchData } = useCategories();
+  const { data, loading, error, fetchData } = useSkills();
 
   useEffect(() => {
     fetchData();
@@ -31,10 +31,10 @@ const CategoriesTable = () => {
   return (
     <Table columns={COLUMNS}>
       {data.map((row) => (
-        <TableRow key={row.id} onClick={() => navigate(`/categories/${row.id}`)}>
+        <TableRow key={row.id} onClick={() => navigate(`/skills/${row.id}`)}>
           <TableCell>{row.name}</TableCell>
-          <TableCell>{row.numberOfSkills}</TableCell>
-          <TableCell>{row.author}</TableCell>
+          <TableCell>{row.categoryName}</TableCell>
+          <TableCell>{row.rate}</TableCell>
           <TableCell>{row.createdAt}</TableCell>
           <TableCell>{row.updatedAt}</TableCell>
         </TableRow>
@@ -43,4 +43,4 @@ const CategoriesTable = () => {
   );
 };
 
-export default CategoriesTable;
+export default SkillsTable;

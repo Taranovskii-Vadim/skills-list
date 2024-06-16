@@ -33,6 +33,7 @@ export class CategoriesController {
 
   @Delete(':id')
   async delCategory(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    // TODO here we should delete all skills in category
     return this.service.deleteBy(id);
   }
 

@@ -1,1 +1,1 @@
-export { default as CategoriesPage } from './ui/CategoriesPage';
+export { default as CategoriesPage } from './ui';

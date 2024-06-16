@@ -11,9 +11,10 @@ export class SkillsService {
     @InjectRepository(Skill) private readonly table: Repository<Skill>,
   ) {}
 
-  async getAll(id: number, userId: number): Promise<Skill[]> {
+  async getAll(id: number): Promise<Skill[]> {
     return await this.table.find({
-      // where: { category: { id }, user: { id: userId } },
+      where: { user: { id } },
+      relations: { category: true },
     });
   }
 

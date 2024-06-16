@@ -1,6 +1,5 @@
 type CommonState = { loading: boolean; error: string };
 
-// table of categories
 export type BaseCategory = {
   id: number;
   name: string;
@@ -26,3 +25,9 @@ export type CategoryState = CommonState & {
   createCategory: (payload: FormValues, redirect: () => void) => Promise<void>;
   editCategory: (id: string, payload: FormValues, redirect: () => void) => Promise<void>;
 };
+
+// dto
+
+export type PostPayloadDTO = { title: string; description: string };
+
+export type PatchPayloadDTO = { title: string; description: string };

@@ -27,12 +27,9 @@ import { PatchSkillDTO, PostSkillDTO } from './dto';
 export class SkillsController {
   constructor(private readonly service: SkillsService) {}
 
-  @Get(':id')
-  async getSkills(
-    @Param('id', ParseIntPipe) id: number,
-    @User('id') userId: number,
-  ): Promise<Skill[]> {
-    return this.service.getAll(id, userId);
+  @Get()
+  async getSkills(@User('id') userId: number): Promise<Skill[]> {
+    return this.service.getAll(userId);
   }
 
   @Get('/logo/:name')

@@ -31,6 +31,8 @@ const CategoryInformation = ({ id }: Props) => {
       {data ? (
         <>
           {Object.keys(data).map((key) => (
+            // TODO move as sep component, markup does have depend on position in object
+            // TODO also this is about S in SOLID
             <Stack key={key} direction="row" alignItems="center" sx={{ mb: 3, '&:last-child': { mb: 0 } }}>
               <Typography sx={{ width: '280px' }}>{LABELS[key as Key]}:</Typography>
               <Typography>{data[key as Key]}</Typography>

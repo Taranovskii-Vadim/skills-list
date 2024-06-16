@@ -6,7 +6,7 @@ import { CategoriesTable } from '@widgets/categories-table';
 
 const CategoriesPage = () => {
   const navigate = useNavigate();
-  const { role } = useOutletContext<{ role: 'admin' | 'user' }>();
+  const { role } = useOutletContext<{ role: Role }>();
 
   const handleNavigateToNewForm = role === 'admin' ? () => navigate('/categories/new') : undefined;
 

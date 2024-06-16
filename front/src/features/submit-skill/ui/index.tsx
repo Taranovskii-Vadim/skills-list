@@ -2,9 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Rating, Button, Paper, Stack, Typography } from '@mui/material';
 
-import { Input, Backdrop } from '@shared/ui';
-
 import { FormValues, useSkill } from '@entities/skill';
+import { Input, Backdrop, DeclineButton } from '@shared/ui';
 
 type Props = { id?: string };
 
@@ -66,14 +65,12 @@ const SubmitSkill = ({ id }: Props) => {
           />
         </Box>
       </Paper>
-      {/* TODO move as sep component in shared??? */}
       <Box>
+        {/* TODO move as sep submitButton component */}
         <Button type="submit" variant="contained" sx={{ mr: 3 }}>
           {!id ? 'Создать' : 'Сохранить'}
         </Button>
-        <Button variant="outlined" onClick={handleDecline}>
-          Отмена
-        </Button>
+        <DeclineButton onClick={handleDecline} />
       </Box>
     </Box>
   );

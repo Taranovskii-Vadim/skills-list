@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Button, Paper } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { Backdrop } from '@shared/ui';
-import { Input, Textarea } from '@shared/ui';
-
 import { FormValues, useCategory } from '@entities/category';
+import { Backdrop, DeclineButton, Input, Textarea } from '@shared/ui';
 
 type Props = { id?: string };
 
@@ -53,9 +51,7 @@ const CategorySubmitForm = ({ id }: Props) => {
         <Button type="submit" variant="contained" sx={{ mr: 3 }}>
           {!id ? 'Создать' : 'Сохранить'}
         </Button>
-        <Button variant="outlined" onClick={handleDecline}>
-          Отмена
-        </Button>
+        <DeclineButton onClick={handleDecline} />
       </Box>
     </Box>
   );

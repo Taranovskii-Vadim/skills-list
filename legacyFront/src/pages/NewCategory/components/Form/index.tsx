@@ -68,7 +68,6 @@ const Form = () => {
           />
         </Box>
       </Paper>
-      {/* TODO move to sep footer component */}
       <Box sx={{ mt: 3 }}>
         <Button
           variant="contained"

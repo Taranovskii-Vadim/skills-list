@@ -7,7 +7,7 @@ import { BaseCategory } from '../model/types';
 type CategoryDTO = {
   id: number;
   title: string;
-  user: UserDTO;
+  user: ProfileDTO;
   description: string | null;
 };
 

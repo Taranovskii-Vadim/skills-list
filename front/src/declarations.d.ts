@@ -2,11 +2,10 @@ declare type Role = 'admin' | 'user';
 
 declare type MetaDataDTO = { updatedAt: string; createdAt: string };
 
-// TODO check later we use it or not
-// declare type UserDTO = {
-//   id: number;
-//   name: string;
-//   login: string;
-//   lastname: string;
-//   role: Role;
-// } & MetaDataDTO;
+declare type ProfileDTO = {
+  id: number;
+  role: Role;
+  name: string;
+  login: string;
+  lastname: string;
+} & MetaDataDTO;

@@ -7,7 +7,7 @@ import { getFullname } from '@shared/lib/common';
 type ResponseDTO = {
   id: number;
   title: string;
-  user: UserDTO;
+  user: ProfileDTO;
   description: string | null;
 } & MetaDataDTO;
 

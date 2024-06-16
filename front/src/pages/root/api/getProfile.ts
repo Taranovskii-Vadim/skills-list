@@ -2,7 +2,7 @@ import { Method, Route } from '@shared/api';
 
 import { Profile } from '../model/types';
 
-type ResponseDTO = UserDTO;
+type ResponseDTO = ProfileDTO;
 
 class GetProfile implements Route {
   method: Method = 'GET';

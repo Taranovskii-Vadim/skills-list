@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Paper, Stack, Typography } from '@mui/material';
 
-import { Backdrop } from '@shared/ui/mui';
+import { Backdrop } from '@shared/ui';
 
 import { Category, useCategory } from '@entities/category';
 

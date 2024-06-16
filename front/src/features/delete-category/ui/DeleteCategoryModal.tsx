@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { Modal } from '@shared/ui/mui';
+import { Modal } from '@shared/ui';
 
 import { useCategory } from '@entities/category';
 

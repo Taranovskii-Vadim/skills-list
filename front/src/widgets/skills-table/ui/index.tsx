@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { TableCell } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { Table, TableRow } from '@shared/ui/mui';
+import { Table, TableRow } from '@shared/ui';
 import { useSkills } from '@entities/skill';
 
 const COLUMNS = ['Наименование', 'Категория', 'Рейтинг', 'Дата создания', 'Дата обновления'];

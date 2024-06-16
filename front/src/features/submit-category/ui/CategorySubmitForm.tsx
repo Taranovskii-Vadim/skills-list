@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Button, Paper } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { Backdrop } from '@shared/ui/mui';
-import { Input, Textarea } from '@shared/ui/form';
+import { Backdrop } from '@shared/ui';
+import { Input, Textarea } from '@shared/ui';
 
 import { FormValues, useCategory } from '@entities/category';
 

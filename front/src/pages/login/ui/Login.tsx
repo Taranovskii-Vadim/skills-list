@@ -2,7 +2,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { Button, Box } from '@mui/material';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { Input } from '@shared/ui/form';
+import { Input } from '@shared/ui';
 
 import useAuth from '../model/store';
 import { FormValues } from '../model/types';

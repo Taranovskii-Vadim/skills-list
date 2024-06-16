@@ -1,6 +1,7 @@
 export { default as Input } from './Input';
 export { default as Textarea } from './Textarea';
 
+export { default as SubmitButton } from './SubmitButton';
 export { default as DeclineButton } from './DeclineButton';
 
 export { default as Modal } from './Modal';

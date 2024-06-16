@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Rating, Button, Paper, Stack, Typography } from '@mui/material';
 
 import { FormValues, useSkill } from '@entities/skill';
-import { Input, Backdrop, DeclineButton } from '@shared/ui';
+import { Input, Backdrop, DeclineButton, SubmitButton } from '@shared/ui';
 
 type Props = { id?: string };
 
@@ -66,10 +66,7 @@ const SubmitSkill = ({ id }: Props) => {
         </Box>
       </Paper>
       <Box>
-        {/* TODO move as sep submitButton component */}
-        <Button type="submit" variant="contained" sx={{ mr: 3 }}>
-          {!id ? 'Создать' : 'Сохранить'}
-        </Button>
+        <SubmitButton isNew={!id} />
         <DeclineButton onClick={handleDecline} />
       </Box>
     </Box>

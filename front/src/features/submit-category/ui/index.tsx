@@ -4,7 +4,7 @@ import { Box, Button, Paper } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormValues, useCategory } from '@entities/category';
-import { Backdrop, DeclineButton, Input, Textarea } from '@shared/ui';
+import { Backdrop, DeclineButton, Input, SubmitButton, Textarea } from '@shared/ui';
 
 type Props = { id?: string };
 
@@ -33,7 +33,7 @@ const CategorySubmitForm = ({ id }: Props) => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleSubmitCategoryData)}>
-      <Paper sx={{ position: 'relative', p: 3 }}>
+      <Paper sx={{ position: 'relative', p: 3, mb: 3 }}>
         <Backdrop open={loading} />
         <Box sx={{ width: '50%' }}>
           <Input
@@ -47,10 +47,8 @@ const CategorySubmitForm = ({ id }: Props) => {
           <Textarea name="description" control={control} label="Описание" />
         </Box>
       </Paper>
-      <Box sx={{ mt: 3 }}>
-        <Button type="submit" variant="contained" sx={{ mr: 3 }}>
-          {!id ? 'Создать' : 'Сохранить'}
-        </Button>
+      <Box>
+        <SubmitButton isNew={!id} />
         <DeclineButton onClick={handleDecline} />
       </Box>
     </Box>

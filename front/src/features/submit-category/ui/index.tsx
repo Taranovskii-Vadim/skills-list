@@ -8,12 +8,9 @@ import { Input, Textarea } from '@shared/ui';
 
 import { FormValues, useCategory } from '@entities/category';
 
-type Props = {
-  id?: string;
-  mode: 'new' | 'edit';
-};
+type Props = { id?: string };
 
-const CategorySubmitForm = ({ id, mode }: Props) => {
+const CategorySubmitForm = ({ id }: Props) => {
   const navigate = useNavigate();
   const { data, loading, editCategory, createCategory } = useCategory();
 
@@ -28,11 +25,10 @@ const CategorySubmitForm = ({ id, mode }: Props) => {
 
   const { errors } = formState;
 
-  // TODO maybe create utils for navigation???
-  const handleDecline = () => navigate(`/categories${mode === 'edit' && id ? `/${id}` : ''}`);
+  const handleDecline = () => navigate(`/categories${id ? `/${id}` : ''}`);
 
   const handleSubmitCategoryData: SubmitHandler<FormValues> = (result) => {
-    const handler = mode === 'edit' && id ? editCategory.bind(null, id) : createCategory;
+    const handler = id ? editCategory.bind(null, id) : createCategory;
 
     handler(result, handleDecline);
   };
@@ -55,7 +51,7 @@ const CategorySubmitForm = ({ id, mode }: Props) => {
       </Paper>
       <Box sx={{ mt: 3 }}>
         <Button type="submit" variant="contained" sx={{ mr: 3 }}>
-          {mode === 'new' ? 'Создать' : 'Сохранить'}
+          {!id ? 'Создать' : 'Сохранить'}
         </Button>
         <Button variant="outlined" onClick={handleDecline}>
           Отмена

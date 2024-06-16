@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { Skills } from '@pages/skills';
 import { RootLayout } from '@pages/root';
+import { NewSkill } from '@pages/new-skill';
 import { NewCategory } from '@pages/new-category';
 import { CategoriesPage } from '@pages/categories';
 import { ViewCategory } from '@pages/view-category';
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
           { path: '/', element: <div>dashboard</div> },
 
           { path: '/skills', element: <Skills /> },
-          { path: '/skills/new', element: <div>new skill</div> },
+          { path: '/skills/new', element: <NewSkill /> },
           { path: '/skills/:id', element: <div>skill view</div> },
 
           { path: '/categories', element: <CategoriesPage /> },

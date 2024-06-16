@@ -11,7 +11,7 @@ import { CategoryState, FormValues, PatchPayloadDTO, PostPayloadDTO } from './ty
 
 const useCategory = create<CategoryState>((set) => ({
   error: '',
-  loading: true,
+  loading: false,
   data: undefined,
 
   fetchData: async (id: string) => {

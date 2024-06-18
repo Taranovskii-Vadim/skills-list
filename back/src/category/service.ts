@@ -15,6 +15,10 @@ export class CategoriesService {
     return await this.table.find({ relations: { user: true } });
   }
 
+  async getCategoriesDictionary(): Promise<Category[]> {
+    return await this.table.find({ select: ['id', 'title'] });
+  }
+
   async getBy(id: number): Promise<Category> {
     return await this.table.findOne({
       where: { id },

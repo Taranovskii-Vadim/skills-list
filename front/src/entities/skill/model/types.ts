@@ -23,5 +23,7 @@ export type SkillsState = CommonState & {
 
 export type SkillState = CommonState & {
   data: Maybe<Skill>;
+  categories: Dictionary;
+  initForm: () => Promise<void>;
   createSkill: (data: FormValues, redirect: Redirect) => Promise<void>;
 };

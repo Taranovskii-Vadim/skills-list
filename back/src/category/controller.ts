@@ -26,6 +26,11 @@ export class CategoriesController {
     return this.service.getAll();
   }
 
+  @Get('/dict')
+  async getCategoriesDictionary(): Promise<Category[]> {
+    return this.service.getCategoriesDictionary();
+  }
+
   @Get(':id')
   async getCategory(@Param('id', ParseIntPipe) id: number): Promise<Category> {
     return this.service.getBy(id);

@@ -4,6 +4,10 @@ declare type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
+declare type DictionaryItem = { value: number; label: string };
+
+declare type Dictionary = DictionaryItem[];
+
 declare type Redirect = () => void;
 
 declare type Role = 'admin' | 'user';

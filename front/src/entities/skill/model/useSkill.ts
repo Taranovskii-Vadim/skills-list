@@ -2,9 +2,10 @@ import { create } from 'zustand';
 
 import { api } from '@shared/api';
 import postSkill from '../api/postSkill';
+import postSkillLogo from '../api/postSkillLogo';
 import getCategories from '../api/getCategories';
 
-import { FormValues, SkillState } from './types';
+import { CreateSkillPayload, Skill, SkillState } from './types';
 
 const useSkills = create<SkillState>((set) => ({
   error: '',
@@ -26,11 +27,20 @@ const useSkills = create<SkillState>((set) => ({
     }
   },
 
-  createSkill: async (data: FormValues, redirect: Redirect) => {
+  createSkill: async ({ logo, ...data }: CreateSkillPayload, redirect: Redirect) => {
     try {
       set({ loading: true });
 
-      await api(postSkill, data);
+      let logoFileName: Skill['logo'] = '';
+
+      if (logo) {
+        const formData = new FormData();
+        formData.append('file', logo);
+
+        logoFileName = await api(postSkillLogo, formData);
+      }
+
+      await api(postSkill, { logo: logoFileName, ...data });
 
       redirect();
     } catch (e) {

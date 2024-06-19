@@ -8,7 +8,7 @@ import {
   UpdateSkillAction,
   SetSkillAction,
   PostSkillAction,
-} from './types';
+} from "./types";
 
 // async
 
@@ -17,23 +17,34 @@ export const patchRate = (payload: UpdateRatePayload): PatchSkillAction => ({
   payload,
 });
 
-export const createSkill = (payload: PostSkillAction['payload']): PostSkillAction => ({
+export const createSkill = (
+  payload: PostSkillAction["payload"]
+): PostSkillAction => ({
   type: ActionTypes.POST_SKILL,
   payload,
 });
 
-export const fetchSkills = (payload: number): FetchSkillsAction => ({ type: ActionTypes.FETCH_SKILLS, payload });
+export const fetchSkills = (payload: number): FetchSkillsAction => ({
+  type: ActionTypes.FETCH_SKILLS,
+  payload,
+});
 
 // sync
 
-export const setLoading = (): SetLoadingAction => ({ type: ActionTypes.SET_LOADING });
+export const setLoading = (): SetLoadingAction => ({
+  type: ActionTypes.SET_LOADING,
+});
 
-export const setSkills = (payload: SetSkillsAction['payload']): SetSkillsAction => ({
+export const setSkills = (
+  payload: SetSkillsAction["payload"]
+): SetSkillsAction => ({
   type: ActionTypes.SET_SKILLS,
   payload,
 });
 
-export const setSkill = (payload: SetSkillAction['payload']): SetSkillAction => ({
+export const setSkill = (
+  payload: SetSkillAction["payload"]
+): SetSkillAction => ({
   type: ActionTypes.SET_SKILL,
   payload,
 });

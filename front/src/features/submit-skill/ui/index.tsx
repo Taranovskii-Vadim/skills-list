@@ -1,15 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Rating, Grid } from '@mui/material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormValues, useSkill } from '@entities/skill';
-import { Input, Backdrop, DeclineButton, SubmitButton, Dropdown, FormWrapper, ViewFormItem } from '@shared/ui';
+import {
+  Input,
+  Backdrop,
+  DeclineButton,
+  SubmitButton,
+  Dropdown,
+  FormWrapper,
+  ViewFormItem,
+  UploadImage,
+} from '@shared/ui';
 
 type Props = { id?: string };
 
 const SubmitSkill = ({ id }: Props) => {
   const navigate = useNavigate();
+  const [logo, setLogo] = useState<File>();
   const { loading, categories, initForm, createSkill } = useSkill();
 
   const { control, formState, handleSubmit } = useForm<FormValues>({
@@ -31,12 +41,19 @@ const SubmitSkill = ({ id }: Props) => {
 
   const handleDecline = () => navigate(`/categories${id ? `/${id}` : ''}`);
 
+  const handleSetLogo = (e: ChangeEvent<HTMLInputElement>): void => {
+    const value = e.target.files![0];
+    if (!value.type.startsWith('image/')) return;
+
+    setLogo(value);
+  };
+
   const handleSubmitCategoryData: SubmitHandler<FormValues> = (result) => {
     // const handler = id ? editCategory.bind(null, id) : createCategory;
 
     // handler(result, handleDecline);
 
-    createSkill(result, () => navigate('/skills'));
+    createSkill({ logo, ...result }, () => navigate('/skills'));
   };
 
   return (
@@ -65,6 +82,10 @@ const SubmitSkill = ({ id }: Props) => {
             label="Id категории"
             error={errors.categoryId?.message}
           />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          {/* TODO think about better ux solution */}
+          <UploadImage file={logo} onSetFile={handleSetLogo} />
         </Grid>
       </FormWrapper>
       <Box>

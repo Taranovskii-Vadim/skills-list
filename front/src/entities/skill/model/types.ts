@@ -4,15 +4,16 @@ type Base = {
   id: number;
   name: string;
   rate: number;
-  // logo: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type Skill = Base & { categoryName: string };
+export type Skill = Base & { categoryName: string; logo: string };
 
-// TODO can add more fields such as description
+// TODO can add more fields such as description etc
 export type FormValues = Prettify<Pick<Skill, 'name' | 'rate'> & { categoryId: number }>;
+
+export type CreateSkillPayload = FormValues & { logo: File | undefined };
 
 // states
 
@@ -25,5 +26,5 @@ export type SkillState = CommonState & {
   data: Maybe<Skill>;
   categories: Dictionary;
   initForm: () => Promise<void>;
-  createSkill: (data: FormValues, redirect: Redirect) => Promise<void>;
+  createSkill: (data: CreateSkillPayload, redirect: Redirect) => Promise<void>;
 };

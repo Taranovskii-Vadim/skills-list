@@ -1,27 +1,38 @@
-import { takeEvery, call, put, all } from 'redux-saga/effects';
+import { takeEvery, call, put, all } from "redux-saga/effects";
 
-import { api } from 'src/api';
-import getSkills from 'src/api/getSkills';
-import postSkill from 'src/api/postSkill';
-import patchSkill from 'src/api/patchSkill';
-import getSkillLogo from 'src/api/getSkillLogo';
-import postSkillLogo from 'src/api/postSkillLogo';
+import { api } from "src/api";
+import getSkills from "src/api/getSkills";
+import postSkill from "src/api/postSkill";
+import patchSkill from "src/api/patchSkill";
+import getSkillLogo from "src/api/getSkillLogo";
+import postSkillLogo from "src/api/postSkillLogo";
 
-import { setLoading, setSkill, setSkills, updateSkill } from './actions';
-import { ActionTypes, FetchSkillsAction, PatchSkillAction, PostSkillAction, Skill, State } from './types';
+import { setLoading, setSkill, setSkills, updateSkill } from "./actions";
+import {
+  ActionTypes,
+  FetchSkillsAction,
+  PatchSkillAction,
+  PostSkillAction,
+  Skill,
+  State,
+} from "./types";
 
 function* fetchSkillsSaga({ payload }: FetchSkillsAction) {
   try {
     yield put(setLoading());
 
-    const response: State['data'] = yield call(() => api(getSkills, undefined, payload.toString()));
+    const response: State["data"] = yield call(() =>
+      api(getSkills, undefined, payload.toString())
+    );
 
-    const result: State['data'] = yield all(
+    const result: State["data"] = yield all(
       response.map(function* (item) {
-        const logo: string = item.logo ? yield call(() => api(getSkillLogo, undefined, item.logo, 'blob')) : '';
+        const logo: string = item.logo
+          ? yield call(() => api(getSkillLogo, undefined, item.logo, "blob"))
+          : "";
 
         return { ...item, logo };
-      }),
+      })
     );
 
     yield put(setSkills(result));
@@ -39,18 +50,22 @@ function* patchSkillSaga({ payload }: PatchSkillAction) {
 
 function* postSkillSaga({ payload: { file, ...other } }: PostSkillAction) {
   try {
-    let logo: Skill['logo'] = '';
+    let logo: Skill["logo"] = "";
 
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
 
       logo = yield call(() => api(postSkillLogo, formData));
     }
 
-    const response: Omit<Skill, 'logo'> = yield call(() => api(postSkill, { logo, ...other }));
+    const response: Omit<Skill, "logo"> = yield call(() =>
+      api(postSkill, { logo, ...other })
+    );
 
-    yield put(setSkill({ ...response, logo: file ? URL.createObjectURL(file) : '' }));
+    yield put(
+      setSkill({ ...response, logo: file ? URL.createObjectURL(file) : "" })
+    );
   } catch (e) {}
 }
 

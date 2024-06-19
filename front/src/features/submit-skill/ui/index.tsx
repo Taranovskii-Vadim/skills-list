@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Box, Rating, Grid } from '@mui/material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Box, Rating, Paper, Stack, Typography } from '@mui/material';
 
 import { FormValues, useSkill } from '@entities/skill';
-import { Input, Backdrop, DeclineButton, SubmitButton, Dropdown } from '@shared/ui';
+import { Input, Backdrop, DeclineButton, SubmitButton, Dropdown, FormWrapper, ViewFormItem } from '@shared/ui';
 
 type Props = { id?: string };
 
@@ -41,16 +41,13 @@ const SubmitSkill = ({ id }: Props) => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleSubmitCategoryData)}>
-      <Paper sx={{ position: 'relative', p: 3, mb: 3 }}>
+      <FormWrapper>
         <Backdrop open={loading} />
-        {/* TODO better use grid here and in submit category */}
-        <Box sx={{ width: '75%' }}>
-          {/* TODO move as universal sep component */}
-          <Stack sx={{ mb: 3 }}>
-            <Typography sx={{ mr: 2 }}>Уровень владения:</Typography>
+        <Grid item xs={12} md={6}>
+          <ViewFormItem label="Уровень владения">
             {/* TODO type warnings we get string but expect number */}
             <Controller name="rate" control={control} render={({ field }) => <Rating max={10} {...field} />} />
-          </Stack>
+          </ViewFormItem>
           <Input
             required
             name="name"
@@ -68,8 +65,8 @@ const SubmitSkill = ({ id }: Props) => {
             label="Id категории"
             error={errors.categoryId?.message}
           />
-        </Box>
-      </Paper>
+        </Grid>
+      </FormWrapper>
       <Box>
         <SubmitButton isNew={!id} />
         <DeclineButton onClick={handleDecline} />

@@ -1,6 +1,8 @@
 export { default as Input } from './Input';
 export { default as Textarea } from './Textarea';
 export { default as Dropdown } from './Dropdown';
+export { default as FormWrapper } from './FormWrapper';
+export { default as ViewFormItem } from './ViewFormItem';
 
 export { default as SubmitButton } from './SubmitButton';
 export { default as DeclineButton } from './DeclineButton';

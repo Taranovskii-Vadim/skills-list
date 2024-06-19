@@ -1,25 +1,31 @@
 import { useEffect } from 'react';
+import { Box, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Paper } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { FormValues, useCategory } from '@entities/category';
-import { Backdrop, DeclineButton, Input, SubmitButton, Textarea } from '@shared/ui';
+import { Backdrop, DeclineButton, FormWrapper, Input, SubmitButton, Textarea } from '@shared/ui';
 
 type Props = { id?: string };
 
 const CategorySubmitForm = ({ id }: Props) => {
   const navigate = useNavigate();
-  const { data, loading, editCategory, createCategory } = useCategory();
 
   const { control, formState, setValue, handleSubmit } = useForm<FormValues>();
+  const { data, loading, fetchData, editCategory, createCategory } = useCategory();
 
   useEffect(() => {
-    if (data) {
+    if (id) {
+      fetchData(id);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (id && data) {
       setValue('name', data.name);
       setValue('description', data.description);
     }
-  }, [data]);
+  }, [id, data]);
 
   const { errors } = formState;
 
@@ -33,9 +39,9 @@ const CategorySubmitForm = ({ id }: Props) => {
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleSubmitCategoryData)}>
-      <Paper sx={{ position: 'relative', p: 3, mb: 3 }}>
+      <FormWrapper>
         <Backdrop open={loading} />
-        <Box sx={{ width: '50%' }}>
+        <Grid item xs={12} md={6}>
           <Input
             required
             name="name"
@@ -45,8 +51,8 @@ const CategorySubmitForm = ({ id }: Props) => {
             error={errors.name?.message}
           />
           <Textarea name="description" control={control} label="Описание" />
-        </Box>
-      </Paper>
+        </Grid>
+      </FormWrapper>
       <Box>
         <SubmitButton isNew={!id} />
         <DeclineButton onClick={handleDecline} />
